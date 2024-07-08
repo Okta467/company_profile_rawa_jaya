@@ -21,6 +21,23 @@ $user_logged_in = $_SESSION['nama_pegawai'] ?? $_SESSION['nama_guest'] ?? $_SESS
         Pengguna
       </a>
       
+      <div class="sidenav-menu-heading">Penduduk</div>
+      
+      <a class="nav-link <?php if ($current_page === 'kartu_keluarga') echo 'active' ?>" href="kartu_keluarga.php?go=kartu_keluarga">
+        <div class="nav-link-icon"><i data-feather="users"></i></div>
+        Kartu Keluarga
+      </a>
+      
+      <a class="nav-link <?php if ($current_page === 'penduduk') echo 'active' ?>" href="penduduk.php?go=penduduk">
+        <div class="nav-link-icon"><i class="far fa-address-card"></i></div>
+        Penduduk
+      </a>
+      
+      <a class="nav-link <?php if ($current_page === 'saran_dan_masukan') echo 'active' ?>" href="saran_dan_masukan.php?go=saran_dan_masukan">
+        <div class="nav-link-icon"><i data-feather="inbox"></i></div>
+        Saran dan Masukan
+      </a>
+      
       <div class="sidenav-menu-heading">Administrasi</div>
       
       <a class="nav-link <?php if ($current_page === 'surat_domisili') echo 'active' ?>" href="surat_domisili.php?go=surat_domisili">
@@ -70,13 +87,6 @@ $user_logged_in = $_SESSION['nama_pegawai'] ?? $_SESSION['nama_guest'] ?? $_SESS
       <a class="nav-link <?php if ($current_page === 'proyek') echo 'active' ?>" href="proyek.php?go=proyek">
         <div class="nav-link-icon"><i class="far fa-building" style="font-size: 1rem"></i></div>
         Proyek
-      </a>
-      
-      <div class="sidenav-menu-heading">Saran dan Masukan</div>
-      
-      <a class="nav-link <?php if ($current_page === 'saran_dan_masukan') echo 'active' ?>" href="saran_dan_masukan.php?go=saran_dan_masukan">
-        <div class="nav-link-icon"><i data-feather="inbox"></i></div>
-        Saran dan Masukan
       </a>
       
       <div class="sidenav-menu-heading">Kepala Desa</div>
