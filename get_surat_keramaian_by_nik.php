@@ -3,6 +3,12 @@
     
     $nik = $_POST['nik'];
 
+    if (!$nik) {
+        echo json_encode(array());
+        mysqli_close($connection);
+        return;
+    }
+
     $stmt = mysqli_stmt_init($connection);
     $query = 
     "SELECT
