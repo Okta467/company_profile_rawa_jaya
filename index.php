@@ -4,6 +4,7 @@
 <head>
   <?php session_start() ?>
   <?php include 'config/config.php' ?>
+  <?php include 'config/connection.php' ?>
   <?php include 'index_head.php' ?>
   <?php include 'helpers/isAccessAllowedHelper.php' ?>
   <?php include 'helpers/isAlreadyLoginHelper.php' ?>
@@ -34,7 +35,7 @@
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-          <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
+          <img src="<?= base_url('assets/landing_page/img/hero-img.png') ?>" class="img-fluid animated" alt="">
         </div>
       </div>
     </div>
@@ -56,7 +57,7 @@
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="">Surat Domisili</a></h4>
+              <h4><a href="surat_domisili.php">Surat Domisili</a></h4>
               <p>Masyarakat mengisi data untuk pembuatan surat domisili.</p>
             </div>
           </div>
@@ -64,7 +65,7 @@
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="">Surat Keramaian</a></h4>
+              <h4><a href="surat_keramaian.php">Surat Keramaian</a></h4>
               <p>Masyarakat mengisi data untuk pembuatan surat keramaian.</p>
             </div>
           </div>
@@ -72,7 +73,7 @@
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-id-card"></i></div>
-              <h4><a href="">KTP</a></h4>
+              <h4><a href="dokumen_ktp.php">KTP</a></h4>
               <p>Pembuatan Kartu Tanda Penduduk masyarakat dengan mengisi data diri.</p>
             </div>
           </div>
@@ -80,7 +81,7 @@
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-group"></i></div>
-              <h4><a href="">KK</a></h4>
+              <h4><a href="dokumen_kk.php">KK</a></h4>
               <p>Pembuatan Kartu Keluarga dengan mengisi data anggota keluarga.</p>
             </div>
           </div>
@@ -104,14 +105,14 @@
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="#sosial">Pengajuan</a></h4>
+              <h4><a href="bantuan_sosial_pengajuan.php">Pengajuan</a></h4>
               <p>Masyarakat mengisi data diri untuk melakukan pengajuan bansos. Penerima manfaat yaitu yang layak sesuai dengan persyaratan yang berlaku.</p>
             </div>
           </div>
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-wallet"></i></div>
-              <h4><a href="#sosial">PKH</a></h4>
+              <h4><a href="bantuan_sosial_pkh.php">PKH</a></h4>
               <p>Bantuan sosial bersyarat kepada Keluarga Miskin (KM) yang ditetapkan sebagai penerima manfaat Program Kartu Harapan (PKH).</p>
             </div>
           </div>
@@ -119,7 +120,7 @@
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-wallet"></i></div>
-              <h4><a href="#sosial">BLT</a></h4>
+              <h4><a href="bantuan_sosial_blt.php">BLT</a></h4>
               <p>Bantuan Langsung Tunai untuk melindungi daya beli masyarakat prasejahtera akibat tekanan berbagai kenaikan harga secara global.</p>
             </div>
           </div>
@@ -127,7 +128,7 @@
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-book-reader"></i></div>
-              <h4><a href="#sosial">Pendidikan</a></h4>
+              <h4><a href="bantuan_sosial_pendidikan.php">Pendidikan</a></h4>
               <p>Bantuan pendidikan berupa alat tulis, peralatan olahraga seperti bola voli, bola kaki, bola sepak takraw, dan seragam olahraga.</p>
             </div>
           </div>
@@ -148,29 +149,76 @@
         </div>
 
         <div class="row">
-          <table class="table table-striped table-hover">
+          <table class="table table-striped table-hover table-responsive datatables" cellspacing="0" width="100%">
             <thead>
               <tr>
                 <th>#</th>
-                <th>Proyek</th>
+                <th>Nama Proyek</th>
                 <th>Tujuan</th>
                 <th>Manfaat</th>
                 <th>Tahapan</th>
                 <th>Detail</th>
+                <th>Status</th>
+                <th>Tgl. Proyek</th>
               </tr>
             </thead>
             <tbody>
-              <?php $i = 1 ?>
-              <?php while ($i <= 10) : ?>
+              <?php
+              $no = 1;
+              $query_proyek = mysqli_query($connection, "SELECT * FROM tbl_proyek ORDER BY id DESC");
+
+              while ($proyek = mysqli_fetch_assoc($query_proyek)):
+                $status_proyek = $proyek['status_proyek'];
+                $formatted_status_proyek = ucwords(str_replace('_', ' ', $status_proyek));
+              ?>
+
                 <tr>
-                  <td><?= $i++ ?></td>
-                  <td>Jalan X</td>
-                  <td>Tujuan abcdefg</td>
-                  <td>1) Manfaat pertama; 2) Manfaat kedua; n) ...</td>
-                  <td>1) Tahap pertama; 2) Tahap kedua; n) ...</td>
-                  <td>Lihat Detail</td>
+                  <td scope="row"><?= $no++ ?></td>
+                  <td><?= $proyek['nama_proyek'] ?></td>
+                  <td>
+                    <div class="ellipsis toggle_tooltip" title="<?= $proyek['tujuan'] ?>">
+                      <?= $proyek['tujuan'] ?>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="ellipsis toggle_tooltip" title="<?= $proyek['manfaat'] ?>">
+                      <?= $proyek['manfaat'] ?>
+                    </div>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-sm rounded-pill btn-outline-primary toggle_modal_detail"
+                      data-tahapan="<?= htmlspecialchars($proyek['tahapan']) ?>">
+                      <i class="bi bi-list-ul me-1"></i>
+                      Tahapan
+                    </button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-sm rounded-pill btn-outline-primary toggle_modal_detail"
+                      data-detail="<?= htmlspecialchars($proyek['detail']) ?>">
+                      <i class="bi bi-list-ul me-1"></i>
+                      Detail
+                    </button>
+                  </td>
+                  <td>
+                    <?php if ($status_proyek === 'akan_dikerjakan'): ?>
+                      
+                      <small class="text-danger"><?= $formatted_status_proyek ?></small>
+                      
+                    <?php elseif ($status_proyek === 'sedang_dikerjakan'): ?>
+                    
+                      <small class="text-primary"><?= $formatted_status_proyek ?></small>
+                      
+                    <?php elseif ($status_proyek === 'selesai'): ?>
+                    
+                      <small class="text-success"><?= $formatted_status_proyek ?></small>
+
+                    <?php endif ?>
+                  </td>
+                  <td><?= $proyek['tgl_proyek'] ?></td>
                 </tr>
+              
               <?php endwhile ?>
+              <?php mysqli_close($connection) ?>
             </tbody>
           </table>
         </div>
@@ -257,6 +305,28 @@
   <!-- End Footer -->
 
   <div id="preloader"></div> <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  
+  <!--============================= MODAL PESAN DETAIL =============================-->
+  <!-- * * Note: * * This modal also can be used for tahapan-->
+  <div class="modal fade" id="ModalDetail" tabindex="-1" role="dialog" aria-labelledby="ModalDetail" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="max-width: 600px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i data-feather="info" class="me-2"></i>Detail</h5>
+          <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+          <div class="px-3 py-1" id="detail_proyek"></div>
+          
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-light border" type="button" data-bs-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/.modal-pesan-detail -->
 
   <?php include 'index_script.php' ?>
   <?php include_once 'helpers/sweetalert2_notify.php' ?>
@@ -307,7 +377,52 @@
         thisForm.querySelector('.error-message').classList.remove('d-block');
       }, 5000);
     })
-    
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      // Datatables initialise
+      $('.datatables').DataTable({
+        responsive: true,
+        pageLength: 5,
+        lengthMenu: [
+          [3, 5, 10, 25, 50, 100],
+          [3, 5, 10, 25, 50, 100],
+        ]
+      });
+
+      // Remove tfoot if it exists
+      $('.datatables tfoot').remove();
+      
+      $('.toggle_tooltip').tooltip({
+        placement: 'top',
+        delay: {
+          show: 500,
+          hide: 100
+        }
+      });
+
+      
+      $('.toggle_modal_detail').on('click', function() {
+        const tahapan = $(this).data('tahapan');
+        const detail = $(this).data('detail');
+        const modal_title = tahapan ? 'Tahapan Proyek' : 'Detail Proyek';
+      
+        const html_text = tahapan ?? detail;
+      
+        const sanitized_html_text = DOMPurify.sanitize(html_text, { USE_PROFILES: { html: true } });
+        const parsed_html_text = marked.parse(sanitized_html_text);
+      
+        $('#ModalDetail #detail_proyek').html(parsed_html_text);
+      
+        $('#ModalDetail .modal-title').html(`<i data-feather="info" class="me-2"></i>${modal_title}`);
+        
+        // Re-init all feather icons
+        feather.replace();
+      
+        $('#ModalDetail').modal('show');
+      });
+    });  
   </script>
 
 </body>
