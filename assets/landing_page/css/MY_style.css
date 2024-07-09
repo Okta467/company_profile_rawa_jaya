@@ -9,17 +9,17 @@ table thead tr {
     color: #fff;
 }
 
-.inner-page .btn-primary {
+.inner-page .btn-primary:not(table .btn-primary) {
     background-color: var(--bs-primary) !important;
     border-color: var(--bs-primary);
 }
 
-.inner-page .btn-outline-primary {
+.inner-page .btn-outline-primary:not(table .btn-outline-primary) {
     color: var(--bs-primary);
     border-color: var(--bs-primary);
 }
 
-.inner-page .btn-outline-primary:hover {
+.inner-page .btn-outline-primary:hover:not(table .btn-outline-primary:hover) {
     color: #fff;
     background-color: var(--bs-primary);
     border-color: var(--bs-primary);
