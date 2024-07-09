@@ -403,7 +403,7 @@
       });
 
       
-      $('.toggle_modal_detail').on('click', function() {
+      $('.datatables').on('click', '.toggle_modal_detail', function() {
         const tahapan = $(this).data('tahapan');
         const detail = $(this).data('detail');
         const modal_title = tahapan ? 'Tahapan Proyek' : 'Detail Proyek';
