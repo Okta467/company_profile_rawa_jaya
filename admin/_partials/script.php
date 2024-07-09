@@ -7,6 +7,8 @@
 
 <script src="<?= base_url('vendor/jquery/jquery-3.7.1.min.js') ?>"></script>
 
+<script src="<?= base_url('vendor/datatables/datatables.min.js') ?>"></script>
+
 <script src="<?= base_url('vendor/select2/js/select2.min.js') ?>"></script>
 
 <script src="<?= base_url('vendor/moment/moment.min.js') ?>"></script>

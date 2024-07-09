@@ -7,6 +7,8 @@
 <link rel="icon" type="image/x-icon" href="<?= base_url('assets/landing_page/img/icon-ogan-ilir.ico') ?>" />
 
 
+<link href="<?= base_url('vendor/datatables/datatables.min.css') ?>" rel="stylesheet" />
+
 <link href="<?= base_url('vendor/select2/css/select2.min.css') ?>" rel="stylesheet" />
 
 <link href="<?= base_url('vendor/easymde/css/easymde.min.css') ?>" rel="stylesheet" />
