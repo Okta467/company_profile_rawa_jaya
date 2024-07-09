@@ -53,6 +53,7 @@
               <tr>
                 <th>#</th>
                 <th>Nama</th>
+                <th>Alamat</th>
                 <th>Status</th>
                 <th>Keterangan</th>
                 <th>Tgl. Pengajuan</th>
@@ -81,6 +82,11 @@
                 <tr>
                   <td scope="row"><?= $no++ ?></td>
                   <td><?= $surat_domisili['nama_lengkap'] ?></td>
+                  <td>
+                    <div class="ellipsis toggle_tooltip" title="<?= $surat_domisili['alamat'] ?>">
+                      <?= $surat_domisili['alamat'] ?>
+                    </div>
+                  </td>
                   <td>
                     <?php if ($status_surat_domisili === 'belum_diproses') : ?>
 
@@ -197,8 +203,6 @@
         <form>
           <div class="modal-body">
             
-            <input type="hidden" id="xid_jabatan" name="xid_jabatan">
-          
             <div class="mb-3">
               <label class="small mb-1" for="xnik">NIK</label>
               <input type="text" name="xnik" minlength="16" maxlength="16" class="form-control mb-1" id="xnik" placeholder="Enter nik" required />
@@ -287,7 +291,7 @@
         clearTimeout(debounceTimer); // Clear the previous timeout
         debounceTimer = setTimeout(function() {
           $.ajax({
-            url: 'get_penduduK_by_nik.php',
+            url: 'get_penduduk_by_nik.php',
             method: 'POST',
             data: {
               nik: nik
