@@ -203,8 +203,6 @@
         <form>
           <div class="modal-body">
             
-            <input type="hidden" id="xid_jabatan" name="xid_jabatan">
-          
             <div class="mb-3">
               <label class="small mb-1" for="xnik">NIK</label>
               <input type="text" name="xnik" minlength="16" maxlength="16" class="form-control mb-1" id="xnik" placeholder="Enter nik" required />
@@ -298,7 +296,7 @@
         clearTimeout(debounceTimer); // Clear the previous timeout
         debounceTimer = setTimeout(function() {
           $.ajax({
-            url: 'get_penduduK_by_nik.php',
+            url: 'get_penduduk_by_nik.php',
             method: 'POST',
             data: {
               nik: nik
