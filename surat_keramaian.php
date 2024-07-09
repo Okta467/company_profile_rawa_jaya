@@ -45,9 +45,10 @@
           </div>
           <div class="col-6 mb-4 d-inline-flex justify-content-end align-items-center">
             <button class="btn btn-sm btn-outline-primary rounded-pill toggle_modal_tambah"><i data-feather="plus-circle" class="me-1 mb-1"></i>Pengajuan Baru</button>
-          </div>
-          <small class="mb-4 text-muted">Jika NIK tidak ditemukan saat pengajuan, silakan isi data Anda <a class="btn-link" href="dokumen_ktp.php">di sini</a>.</small>
-          <table class="table table-striped table-hover table-responsive datatables" cellspacing="0" width="100%">
+            <button class="btn btn-sm btn-outline-primary rounded-pill ms-3 toggle_modal_cari_by_nik"><i data-feather="search" class="me-1 mb-1"></i>Cari Berdasarkan NIK</button>
+            </div>
+          <small class="mb-4 text-muted">Jika NIK tidak ditemukan saat pengajuan, silakan isi data Anda sebagai Penduduk Baru <a class="btn-link" href="dokumen_ktp.php">di sini</a>.</small>
+          <table class="table table-striped table-hover table-responsive datatables" id="tabel_surat_keramaian" cellspacing="0" width="100%" style="font-size: 0.875rem">
             <thead>
               <tr>
                 <th>#</th>
@@ -63,7 +64,7 @@
               $no = 1;
               $query_surat_keramaian = mysqli_query($connection, 
                 "SELECT
-                  a.id AS id_surat_keramaian, a.perihal, a.status_pengajuan AS status_pengajuan_surat_keramaian, a.keterangan_pengajuan AS keterangan_pengajuan_surat_keramaian, a.created_at AS tgl_pengajuan_surat_keramaian,
+                  a.id AS id_surat_keramaian, a.perihal, a.status_pengajuan AS status_pengajuan, a.keterangan_pengajuan AS keterangan_pengajuan, a.created_at AS tgl_pengajuan,
                   b.id AS id_penduduk, b.nik, b.nama_lengkap, b.jk, b.tmp_lahir, b.tgl_lahir, b.warga_negara, b.agama, b.pekerjaan, b.alamat, b.email, b.status_validasi AS status_validasi_penduduk, b.keterangan_validasi AS keterangan_validasi_penduduk,
                   c.id AS id_kartu_keluarga, c.nomor_kk, c.nik_kepala_keluarga
                 FROM tbl_surat_keramaian AS a
@@ -74,7 +75,7 @@
                 ORDER BY a.id DESC");
 
               while ($surat_keramaian = mysqli_fetch_assoc($query_surat_keramaian)) :
-                $status_surat_keramaian = $surat_keramaian['status_pengajuan_surat_keramaian'];
+                $status_surat_keramaian = $surat_keramaian['status_pengajuan'];
                 $formatted_status_surat_keramaian = ucwords(str_replace('_', ' ', $status_surat_keramaian));
               ?>
 
@@ -89,30 +90,30 @@
                   <td>
                     <?php if ($status_surat_keramaian === 'belum_diproses') : ?>
 
-                      <small class="text-danger"><?= $formatted_status_surat_keramaian ?></small>
+                      <span class="text-danger"><?= $formatted_status_surat_keramaian ?></span>
 
                     <?php elseif ($status_surat_keramaian === 'sudah_diproses') : ?>
 
-                      <small class="text-success"><?= $formatted_status_surat_keramaian ?></small>
+                      <span class="text-success"><?= $formatted_status_surat_keramaian ?></span>
 
                     <?php endif ?>
                   </td>
                   <td>
-                    <?php if (!$surat_keramaian['keterangan_pengajuan_surat_keramaian']): ?>
+                    <?php if (!$surat_keramaian['keterangan_pengajuan']): ?>
 
                       <small class="text-muted">Tidak ada</small>
                     
                     <?php else: ?>
 
                       <button type="button" class="btn btn-sm rounded-pill btn-outline-primary toggle_modal_detail"
-                        data-detail="<?= htmlspecialchars($surat_keramaian['keterangan_pengajuan_surat_keramaian']) ?>">
+                        data-keterangan_pengajuan="<?= htmlspecialchars($surat_keramaian['keterangan_pengajuan']) ?>">
                         <i class="bi bi-list-ul me-1"></i>
                         Lihat keterangan
                       </button>
 
                     <?php endif ?>
                   </td>
-                  <td><?= date('d-m-Y', strtotime($surat_keramaian['tgl_pengajuan_surat_keramaian'])) ?></td>
+                  <td><?= $surat_keramaian['tgl_pengajuan'] ?></td>
                 </tr>
 
               <?php endwhile ?>
@@ -129,9 +130,9 @@
   <!-- End Footer -->
 
   <div id="preloader"></div> <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!--============================= MODAL CARI PENGAJUAN =============================-->
-  <div class="modal fade" id="ModalCariPengajuan" tabindex="-1" role="dialog" aria-labelledby="ModalCariPengajuan" aria-hidden="true">
+  
+  <!--============================= MODAL PESAN DETAIL =============================-->
+  <div class="modal fade" id="ModalDetailKeteranganPengajuan" tabindex="-1" role="dialog" aria-labelledby="ModalDetailKeteranganPengajuan" aria-hidden="true">
     <div class="modal-dialog" role="document" style="max-width: 600px;">
       <div class="modal-content">
         <div class="modal-header">
@@ -139,9 +140,9 @@
           <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-
-          <div class="px-3 py-1" id="detail_surat_keramaian"></div>
-
+          
+          <div class="px-3 py-1" id="detail_keterangan_pengajuan"></div>
+          
         </div>
         <div class="modal-footer">
           <button class="btn btn-light border" type="button" data-bs-dismiss="modal">Tutup</button>
@@ -149,7 +150,47 @@
       </div>
     </div>
   </div>
-  <!--/.modal-cari-pengajuan -->
+  <!--/.modal-pesan-detail -->
+  
+  <!--============================= MODAL CARI BY NIK =============================-->
+  <div class="modal fade" id="ModalCariByNik" tabindex="-1" role="dialog" aria-labelledby="ModalCariByNik" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i data-feather="info" class="me-2"></i>Detail</h5>
+          <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+  
+          <div class="mb-4">
+            <label for="xnik_filter">Cari berdasarkan NIK</label>
+            <div class="input-group mb-3">
+              <input type="text" name="xnik_filter" class="form-control" id="xnik_filter" placeholder="Enter NIK"><button class="input-group-text" id="xnik_filter_btn">Cari</button>
+            </div>
+          </div>
+  
+          <table class="table table-hover table-bordered datatables" id="table_cari_by_nik" cellspacing="0" width="100%" style="font-size: 0.875rem">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>NIK</th>
+                <th>Nama</th>
+                <th>Warga Negara</th>
+                <th>Pekerjaan</th>
+                <th>Status Pengajuan</th>
+                <th>Tanggal Pengajuan</th>
+              </tr>
+            </thead>
+          </table>
+          
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-light border" type="button" data-bs-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/.modal-cari-by-nik -->
     
   <!--============================= MODAL INPUT SURAT KERAMAIAN =============================-->
   <div class="modal fade" id="ModalInputSuratKeramaian" tabindex="-1" role="dialog" aria-labelledby="ModalInputSuratKeramaianTitle" aria-hidden="true">
@@ -193,7 +234,7 @@
   <script>
     $(document).ready(function() {
       // Datatables initialise
-      $('.datatables').DataTable({
+      $('#tabel_surat_keramaian').DataTable({
         responsive: true,
         pageLength: 5,
         lengthMenu: [
@@ -235,6 +276,19 @@
         $('#ModalInputSuratKeramaian').modal('show');
       });
 
+      
+      $('#tabel_surat_keramaian').on('click', '.toggle_modal_detail', function() {
+        const keterangan_pengajuan = $(this).data('keterangan_pengajuan');
+      
+        $('#ModalDetailKeteranganPengajuan .modal-title').html(`<i data-feather="info" class="me-2"></i>Keterangan Pengajuan`);
+        $('#ModalDetailKeteranganPengajuan #detail_keterangan_pengajuan').html(keterangan_pengajuan);
+        
+        // Re-init all feather icons
+        feather.replace();
+      
+        $('#ModalDetailKeteranganPengajuan').modal('show');
+      });
+
 
       let debounceTimer;
 
@@ -273,6 +327,84 @@
         .attr('value', 'Buat Akun');
 
       toggleSwalSubmit(formSubmitBtn, eventName, formElement, submitElement);
+    });
+  </script>
+
+
+  <!-- Script for cari berdasarkan NIK (table and search input)  -->
+  <script>
+    $(document).ready(function() {
+
+      let tableCariByNik = $('#table_cari_by_nik').DataTable({
+        responsive: true,
+        pageLength: 5,
+        lengthMenu: [
+          [3, 5, 10, 25, 50, 100],
+          [3, 5, 10, 25, 50, 100],
+        ]
+      });
+
+      $('.toggle_modal_cari_by_nik').on('click', function() {
+        $('#ModalCariByNik .modal-title').html(`<i data-feather="info" class="me-2 mb-1"></i>Cari Pengajuan Surat Keramaian`);
+        
+        // Re-init all feather icons
+        feather.replace();
+
+        $('#ModalCariByNik').modal('show');
+      });
+
+
+      $('#xnik_filter_btn').on('click', function() {
+        const nik_filter = $('#xnik_filter').val();
+
+        if (!nik_filter) {
+          tableCariByNik.clear().draw();
+          return;
+        }
+
+        $.ajax({
+          url: 'get_surat_keramaian_by_nik.php',
+          method: 'POST',
+          data: {
+            nik: nik_filter
+          },
+          dataType: 'JSON',
+          success: function(datas) {
+            if (datas === undefined || !datas.length) {
+              tableCariByNik.clear().draw();
+              return;
+            }
+            
+            tableCariByNik.clear();
+
+            datas.forEach(function(data) {
+              let statusPengajuan;
+
+              if (!data.status_pengajuan) {
+                statusPengajuan = '<small class="text-muted">Belum ada pengajuan</small>';
+              } else {
+                statusPengajuan = data.status_pengajuan === 'sudah_diproses'
+                  ? `<span class="text-success">Sudah Diproses</span>`
+                  : `<span class="text-danger">Belum Diproses</span>`;
+              }
+
+              let tglPengajuan = data.tgl_pengajuan ?? '<small class="text-muted">Belum ada pengajuan</small>';
+
+              let tableData = [1, data.nik, data.nama_lengkap, data.warga_negara, data.pekerjaan, statusPengajuan, tglPengajuan];
+              
+              tableCariByNik.row.add(tableData);
+            });
+
+            tableCariByNik.draw();
+            tableCariByNik.columns.adjust();
+          },
+          error: function(request, status, error) {
+            console.log("ajax call went wrong:" + request.responseText);
+            // console.log("ajax call went wrong:" + error);
+          }
+        })
+      });
+    
     });
   </script>
 
