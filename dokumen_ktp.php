@@ -431,10 +431,13 @@
           },
           dataType: 'JSON',
           success: function(datas) {
+            console.log(datas)
             if (datas === undefined || !datas.length) {
               tableCariByNik.clear().draw();
               return;
             }
+            
+            tableCariByNik.clear();
 
             datas.forEach(function(data) {
               let statusPengajuan;
@@ -451,7 +454,6 @@
 
               let tableData = [1, data.nik, data.nama_lengkap, data.warga_negara, data.pekerjaan, statusPengajuan, tglPengajuan];
               
-              tableCariByNik.clear();
               tableCariByNik.row.add(tableData);
             });
 
