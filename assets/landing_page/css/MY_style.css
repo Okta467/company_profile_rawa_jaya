@@ -1,4 +1,207 @@
-#infrastruktur thead tr {
-    background-color: #47b2e4;
+:root {
+    --bs-primary: #37517e;
+    --bs-link-color: #37517e;
+    --bs-link-hover-color: rgb(54, 60, 94);
+}
+
+table thead tr {
+    background-color: var(--bs-primary);
     color: #fff;
 }
+
+.inner-page .btn-primary {
+    background-color: var(--bs-primary) !important;
+    border-color: var(--bs-primary);
+}
+
+.inner-page .btn-outline-primary {
+    color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.inner-page .btn-outline-primary:hover {
+    color: #fff;
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.inner-page h1,
+.inner-page h2,
+.inner-page h3,
+.inner-page h4,
+.inner-page h5,
+.inner-page h6 {
+    color: #37517e;
+}
+
+.feather {
+    width: 1rem;
+    height: 1rem;
+}
+
+.modal-body label {
+    color: #69707A;
+}
+
+
+/*!
+ * CSS Styling copied from sb admin pro
+ * path: assets/css/styles.css
+ */
+
+.form-text {
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    color: #a7aeb8;
+  }
+  
+  .form-control, .datatable-input {
+    display: block;
+    width: 100%;
+    padding: 0.875rem 1.125rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1;
+    color: #69707a;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #c5ccd6;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    border-radius: 0.35rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .form-control, .datatable-input {
+      transition: none;
+    }
+  }
+  .form-control[type=file], [type=file].datatable-input {
+    overflow: hidden;
+  }
+  .form-control[type=file]:not(:disabled):not([readonly]), [type=file].datatable-input:not(:disabled):not([readonly]) {
+    cursor: pointer;
+  }
+  .form-control:focus, .datatable-input:focus {
+    color: #69707a;
+    background-color: #fff;
+    border-color: transparent;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(0, 97, 242, 0.25);
+  }
+  .form-control::-webkit-date-and-time-value, .datatable-input::-webkit-date-and-time-value {
+    height: 1em;
+  }
+  .form-control::-moz-placeholder, .datatable-input::-moz-placeholder {
+    color: #a7aeb8;
+    opacity: 1;
+  }
+  .form-control::placeholder, .datatable-input::placeholder {
+    color: #a7aeb8;
+    opacity: 1;
+  }
+  .form-control:disabled, .datatable-input:disabled {
+    background-color: #e0e5ec;
+    opacity: 1;
+  }
+  .form-control::file-selector-button, .datatable-input::file-selector-button {
+    padding: 0.875rem 1.125rem;
+    margin: -0.875rem -1.125rem;
+    -webkit-margin-end: 1.125rem;
+            margin-inline-end: 1.125rem;
+    color: #69707a;
+    background-color: #fff;
+    pointer-events: none;
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    border-inline-end-width: 1px;
+    border-radius: 0;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .form-control::file-selector-button, .datatable-input::file-selector-button {
+      transition: none;
+    }
+  }
+  .form-control:hover:not(:disabled):not([readonly])::file-selector-button, .datatable-input:hover:not(:disabled):not([readonly])::file-selector-button {
+    background-color: #f2f2f2;
+  }
+  
+  .form-control-plaintext {
+    display: block;
+    width: 100%;
+    padding: 0.875rem 0;
+    margin-bottom: 0;
+    line-height: 1;
+    color: #69707a;
+    background-color: transparent;
+    border: solid transparent;
+    border-width: 1px 0;
+  }
+  .form-control-plaintext:focus {
+    outline: 0;
+  }
+  .form-control-plaintext.form-control-sm, .form-control-plaintext.form-control-lg {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  
+  .form-control-sm {
+    min-height: calc(1em + 1rem + 2px);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    border-radius: 0.25rem;
+  }
+  .form-control-sm::file-selector-button {
+    padding: 0.5rem 0.75rem;
+    margin: -0.5rem -0.75rem;
+    -webkit-margin-end: 0.75rem;
+            margin-inline-end: 0.75rem;
+  }
+  
+  .form-control-lg {
+    min-height: calc(1em + 2.25rem + 2px);
+    padding: 1.125rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+  }
+  .form-control-lg::file-selector-button {
+    padding: 1.125rem 1.5rem;
+    margin: -1.125rem -1.5rem;
+    -webkit-margin-end: 1.5rem;
+            margin-inline-end: 1.5rem;
+  }
+  
+  textarea.form-control, textarea.datatable-input {
+    min-height: calc(1em + 1.75rem + 2px);
+  }
+  textarea.form-control-sm {
+    min-height: calc(1em + 1rem + 2px);
+  }
+  textarea.form-control-lg {
+    min-height: calc(1em + 2.25rem + 2px);
+  }
+  
+  .form-control-color {
+    width: 3rem;
+    height: calc(1em + 1.75rem + 2px);
+    padding: 0.875rem;
+  }
+  .form-control-color:not(:disabled):not([readonly]) {
+    cursor: pointer;
+  }
+  .form-control-color::-moz-color-swatch {
+    border: 0 !important;
+    border-radius: 0.35rem;
+  }
+  .form-control-color::-webkit-color-swatch {
+    border-radius: 0.35rem;
+  }
+  .form-control-color.form-control-sm {
+    height: calc(1em + 1rem + 2px);
+  }
+  .form-control-color.form-control-lg {
+    height: calc(1em + 2.25rem + 2px);
+  }
