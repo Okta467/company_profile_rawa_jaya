@@ -323,7 +323,6 @@
         clearTimeout(debounceTimer); // Clear the previous timeout
         debounceTimer = setTimeout(function() {
           isNikExists(nik, function(exist) {
-            console.log(exist)
             !exist
               ? $('#xnik_pengajuan_baru_help').removeClass('d-none')
               : $('#xnik_pengajuan_baru_help').addClass('d-none');
@@ -369,7 +368,6 @@
         clearTimeout(debounceTimer); // Clear the previous timeout
         debounceTimer = setTimeout(function() {
           isNikExists(nik, function(exist) {
-            console.log(exist)
             !exist
               ? $('#xnik_penduduk_baru_help').addClass('d-none')
               : $('#xnik_penduduk_baru_help').removeClass('d-none');
@@ -431,7 +429,6 @@
           },
           dataType: 'JSON',
           success: function(datas) {
-            console.log(datas)
             if (datas === undefined || !datas.length) {
               tableCariByNik.clear().draw();
               return;
@@ -446,8 +443,8 @@
                 statusPengajuan = '<small class="text-muted">Belum ada pengajuan</small>';
               } else {
                 statusPengajuan = data.status_pengajuan === 'sudah_diproses'
-                  ? `<span class="text-success">Sudah Divalidasi</span>`
-                  : `<span class="text-danger">Belum Divalidasi</span>`;
+                  ? `<span class="text-success">Sudah Diproses</span>`
+                  : `<span class="text-danger">Belum Diproses</span>`;
               }
 
               let tglPengajuan = data.tgl_pengajuan ?? '<small class="text-muted">Belum ada pengajuan</small>';
