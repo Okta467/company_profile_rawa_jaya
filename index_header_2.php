@@ -7,11 +7,11 @@
 
     <nav id="navbar" class="navbar">
       <ul>
-        <li><a class="nav-link scrollto" href="index.php#hero">Beranda</a></li>
-        <li><a class="nav-link scrollto active" href="index.php#administrasi">Administrasi</a></li>
-        <li><a class="nav-link scrollto" href="index.php#sosial">Sosial</a></li>
-        <li><a class="nav-link scrollto" href="index.php#infrastruktur">Infrastruktur</a></li>
-        <li><a class="nav-link scrollto" href="index.php#kontak">Kontak</a></li>
+        <li><a class="nav-link scrollto" href="<?= base_url() ?>">Beranda</a></li>
+        <li><a class="nav-link scrollto active" href="<?= base_url('#administrasi') ?>">Administrasi</a></li>
+        <li><a class="nav-link scrollto" href="<?= base_url('#sosial') ?>">Sosial</a></li>
+        <li><a class="nav-link scrollto" href="<?= base_url('#infrastruktur') ?>">Infrastruktur</a></li>
+        <li><a class="nav-link scrollto" href="<?= base_url('#kontak') ?>">Kontak</a></li>
         <li><a class="btn btn-outline-info rounded-pill border-2 py-1 px-3 mx-3 ms-lg-4 me-lg-0 mt-3 mt-lg-0 text-white" href="login.php">Masuk</a></li>
         <li><a class="btn btn-outline-info rounded-pill border-2 py-1 px-3 mx-3 ms-lg-3 me-lg-0 mt-3 mt-lg-0 text-white" href="register.php">Daftar</a></li>
       </ul>
