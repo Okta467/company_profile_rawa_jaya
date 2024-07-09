@@ -16,10 +16,14 @@
 <link href="<?= base_url('vendor/glightbox/css/glightbox.min.css') ?>" rel="stylesheet">
 <link href="<?= base_url('vendor/remixicon/remixicon.css') ?>" rel="stylesheet">
 <link href="<?= base_url('vendor/swiper/swiper-bundle.min.css') ?>" rel="stylesheet">
+<link href="<?= base_url('vendor/datatables/datatables.min.css') ?>" rel="stylesheet" />
+<link href="<?= base_url('vendor/select2/css/select2.min.css') ?>" rel="stylesheet" />
+<script src="<?= base_url('assets/js/feather/feather.min.js') ?>" crossorigin="anonymous"></script>
 
 <!-- Template Main CSS File -->
 <link href="<?= base_url('assets/landing_page/css/style.css') ?>" rel="stylesheet">
 <link href="<?= base_url('assets/landing_page/css/MY_style.css') ?>" rel="stylesheet">
+<link href="<?= base_url('assets/css/MY_styles.css') ?>" rel="stylesheet">
 
 <!-- =======================================================
   * Template Name: Arsha - v4.3.0
