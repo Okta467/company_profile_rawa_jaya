@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2024 at 03:14 AM
+-- Generation Time: Jul 09, 2024 at 11:46 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -71,11 +71,19 @@ CREATE TABLE `tbl_dokumen_kk` (
 CREATE TABLE `tbl_dokumen_ktp` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_penduduk` int(10) UNSIGNED NOT NULL,
-  `status_pengajuan` enum('belum_diproses','sudah_diproses') NOT NULL,
+  `status_pengajuan` enum('belum_diproses','sudah_diproses') NOT NULL DEFAULT 'belum_diproses',
   `keterangan_pengajuan` varchar(1000) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_dokumen_ktp`
+--
+
+INSERT INTO `tbl_dokumen_ktp` (`id`, `id_penduduk`, `status_pengajuan`, `keterangan_pengajuan`, `created_at`, `updated_at`) VALUES
+(1, 7, 'belum_diproses', '', '2024-07-09 09:10:40', NULL),
+(2, 7, 'belum_diproses', '', '2024-07-09 09:24:10', NULL);
 
 -- --------------------------------------------------------
 
@@ -160,7 +168,7 @@ INSERT INTO `tbl_jurusan_pendidikan` (`id`, `id_pendidikan`, `nama_jurusan`, `cr
 CREATE TABLE `tbl_kartu_keluarga` (
   `id` int(10) UNSIGNED NOT NULL,
   `nomor_kk` varchar(16) NOT NULL,
-  `nik_kepala_keluarga` varchar(16) NOT NULL,
+  `nik_kepala_keluarga` varchar(16) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -282,7 +290,7 @@ INSERT INTO `tbl_pendidikan` (`id`, `nama_pendidikan`, `created_at`, `updated_at
 
 CREATE TABLE `tbl_penduduk` (
   `id` int(10) UNSIGNED NOT NULL,
-  `id_kartu_keluarga` int(10) UNSIGNED NOT NULL,
+  `id_kartu_keluarga` int(10) UNSIGNED DEFAULT NULL,
   `nik` varchar(16) NOT NULL,
   `nama_lengkap` varchar(128) NOT NULL,
   `jk` enum('l','p') NOT NULL,
@@ -293,11 +301,19 @@ CREATE TABLE `tbl_penduduk` (
   `pekerjaan` varchar(128) NOT NULL,
   `alamat` varchar(255) NOT NULL,
   `email` varchar(128) NOT NULL,
-  `status_pengajuan` enum('belum_diproses','sudah_diproses') NOT NULL,
-  `keterangan_pengajuan` varchar(1000) NOT NULL,
+  `status_validasi` enum('belum_divalidasi','sudah_divalidasi') NOT NULL,
+  `keterangan_validasi` varchar(1000) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_penduduk`
+--
+
+INSERT INTO `tbl_penduduk` (`id`, `id_kartu_keluarga`, `nik`, `nama_lengkap`, `jk`, `tmp_lahir`, `tgl_lahir`, `warga_negara`, `agama`, `pekerjaan`, `alamat`, `email`, `status_validasi`, `keterangan_validasi`, `created_at`, `updated_at`) VALUES
+(7, NULL, '1671029837882233', 'Okta Alfiansyah', 'l', 'Palembang', '1990-10-10', 'WNI', 'islam', 'Web Developer', 'kertapati', 'oktaalfiansyah@gmail.com', 'sudah_divalidasi', 'acc', '2024-07-09 02:02:23', NULL),
+(8, NULL, '1671762837882233', 'Bima Satria', 'l', 'Palembang', '1999-08-28', 'WNI', 'islam', 'Gudang Shopee', 'Palembang', 'bimasatria@gmail.com', '', '', '2024-07-09 09:23:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -347,7 +363,8 @@ CREATE TABLE `tbl_proyek` (
 --
 
 INSERT INTO `tbl_proyek` (`id`, `nama_proyek`, `tujuan`, `manfaat`, `tahapan`, `detail`, `status_proyek`, `tgl_proyek`, `created_at`, `updated_at`) VALUES
-(1, 'Perbaikan Jalan X', 'Memperbaiki jalan rusak di alamat X', 'Akses jalan utama warga dapat kembali digunakan', '1. Tahapan ke-1\r\n2. Tahapan ke-2\r\n3. Tahapan ke-3\r\n4. Tahapan ke-4', '### Anggaran\r\nRpxx.000.000.000\r\n\r\n### Detail ke-1\r\nteks detail ke-1\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Illum reprehenderit repellendus ea officia quidem exercitationem, quia et explicabo alias, autem sapiente odit quasi, tenetur corporis necessitatibus laborum sequi temporibus quos.\r\n\r\n### Detail ke-2\r\nteks detail ke-2\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Illum reprehenderit repellendus ea officia quidem exercitationem, quia et explicabo alias, autem sapiente odit quasi, tenetur corporis necessitatibus laborum sequi temporibus quos.\r\n\r\n### Detail ke-3\r\nteks detail ke-3\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Illum reprehenderit repellendus ea officia quidem exercitationem, quia et explicabo alias, autem sapiente odit quasi, tenetur corporis necessitatibus laborum sequi temporibus quos.', 'sedang_dikerjakan', '2018-02-07', '2024-07-07 23:12:55', '2024-07-07 23:24:26');
+(1, 'Perbaikan Jalan X', 'Memperbaiki jalan rusak di alamat X', 'Akses jalan utama warga dapat kembali digunakan', '1. Tahapan ke-1\r\n2. Tahapan ke-2\r\n3. Tahapan ke-3\r\n4. Tahapan ke-4', '#### Anggaran\r\nRpxx.000.000.000\r\n\r\n#### Detail ke-1\r\nteks detail ke-1\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Illum reprehenderit repellendus ea officia quidem exercitationem, quia et explicabo alias, autem sapiente odit quasi, tenetur corporis necessitatibus laborum sequi temporibus quos.\r\n\r\n#### Detail ke-2\r\nteks detail ke-2\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Illum reprehenderit repellendus ea officia quidem exercitationem, quia et explicabo alias, autem sapiente odit quasi, tenetur corporis necessitatibus laborum sequi temporibus quos.\r\n\r\n#### Detail ke-3\r\nteks detail ke-3\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Illum reprehenderit repellendus ea officia quidem exercitationem, quia et explicabo alias, autem sapiente odit quasi, tenetur corporis necessitatibus laborum sequi temporibus quos.', 'sedang_dikerjakan', '2018-02-07', '2024-07-07 23:12:55', '2024-07-08 05:11:00'),
+(3, 'Pembangunan Parit di Jalan Y', 'Membebaskan desa dari masalah banjir tahunan', 'Mencegah banjir, menjaga lingkungan agar tetap bersih', 'Adapun tahapan dalam realisasi parit di jalan Y di antaranya sebagai berikut:\r\n1. Abcdefgh\r\n2. Ijklmnopqrstu\r\n3. Vwxyz', '#### Anggaran\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ullam at enim quisquam praesentium vel illo, quod eum harum unde impedit omnis veniam dolor nihil maxime molestias a aspernatur molestiae?\r\n\r\n#### Ketua Pelaksana\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ullam at enim quisquam praesentium vel illo, quod eum harum unde impedit omnis veniam dolor nihil maxime molestias a aspernatur molestiae?\r\n\r\n#### Penanggung Jawab\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ullam at enim quisquam praesentium vel illo, quod eum harum unde impedit omnis veniam dolor nihil maxime molestias a aspernatur molestiae?\r\n\r\n#### Daftar Pekerja\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ullam at enim quisquam praesentium vel illo, quod eum harum unde impedit omnis veniam dolor nihil maxime molestias a aspernatur molestiae?\r\n1. kjnjnknk\r\n2. kjjknkjnkjn\r\n3. nknkjnjknj\r\n\r\n#### Lokasi\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ullam at enim quisquam praesentium vel illo, quod eum harum unde impedit omnis veniam dolor nihil maxime molestias a aspernatur molestiae?', 'akan_dikerjakan', '2020-05-01', '2024-07-08 05:17:57', '2024-07-08 05:19:57');
 
 -- --------------------------------------------------------
 
@@ -371,13 +388,14 @@ CREATE TABLE `tbl_saran_dan_masukan` (
 --
 
 INSERT INTO `tbl_saran_dan_masukan` (`id`, `nama_lengkap`, `email`, `perihal`, `pesan`, `status_dibaca`, `created_at`, `updated_at`) VALUES
-(1, 'Okta Alfiansyah', 'oktaalfiansyah@gmail.com', 'test perihal', 'test pesan', 0, '2024-07-06 23:45:11', NULL),
+(1, 'Okta Alfiansyah', 'oktaalfiansyah@gmail.com', 'test perihal', 'test pesan', 0, '2024-07-06 23:45:11', '2024-07-08 05:27:07'),
 (2, 'Okta Alfiansyah', 'oktaalfiansyah@gmail.com', 'test perihal', 'test pesan', 0, '2024-07-07 00:30:03', NULL),
 (3, 'Okta Alfiansyah', 'oktaalfiansyah@gmail.com', 'test perihal', 'test pesan', 0, '2024-07-07 00:42:24', NULL),
 (4, 'Okta Alfiansyah', 'oktaalfiansyah@gmail.com', 'test perihal', 'test pesan', 0, '2024-07-07 00:52:38', NULL),
 (5, 'Okta Alfiansyah', 'oktaalfiansyah@gmail.com', 'test perihal', 'test pesan', 1, '2024-07-07 00:54:13', '2024-07-08 01:14:21'),
-(6, 'Okta Alfiansyah', 'oktaalfiansyah@gmail.com', 'test perihal', 'test pesan', 1, '2024-07-07 00:55:53', '2024-07-08 01:14:23'),
-(7, 'Okta Alfiansyah', 'oktaalfiansyah@gmail.com', 'Test Perihal Pimpinan', 'test', 0, '2024-07-07 23:50:57', '2024-07-08 01:13:26');
+(6, 'Okta Alfiansyah', 'oktaalfiansyah@gmail.com', 'test perihal', 'test pesan', 1, '2024-07-07 00:55:53', '2024-07-08 05:26:52'),
+(7, 'Okta Alfiansyah', 'oktaalfiansyah@gmail.com', 'Test Perihal Pimpinan', 'test', 0, '2024-07-07 23:50:57', '2024-07-08 01:13:26'),
+(9, 'Carl Johnson', 'carl@johnson.com', 'Perbaikan jalan X', 'Mohon perbaikan jalannya dipercepat, Pak!', 0, '2024-07-08 01:30:16', '2024-07-08 01:30:22');
 
 -- --------------------------------------------------------
 
@@ -404,11 +422,18 @@ CREATE TABLE `tbl_surat_keramaian` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_penduduk` int(10) UNSIGNED NOT NULL,
   `perihal` varchar(128) NOT NULL,
-  `status_pengajuan` enum('belum_diproses','sudah_diproses') NOT NULL,
+  `status_pengajuan` enum('belum_diproses','sudah_diproses') NOT NULL DEFAULT 'belum_diproses',
   `keterangan_pengajuan` varchar(1000) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_surat_keramaian`
+--
+
+INSERT INTO `tbl_surat_keramaian` (`id`, `id_penduduk`, `perihal`, `status_pengajuan`, `keterangan_pengajuan`, `created_at`, `updated_at`) VALUES
+(1, 7, 'test', 'belum_diproses', '', '2024-07-09 05:38:32', NULL);
 
 --
 -- Indexes for dumped tables
@@ -483,7 +508,8 @@ ALTER TABLE `tbl_pendidikan`
 --
 ALTER TABLE `tbl_penduduk`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nik` (`nik`);
+  ADD UNIQUE KEY `nik` (`nik`),
+  ADD KEY `id_kartu_keluarga` (`id_kartu_keluarga`);
 
 --
 -- Indexes for table `tbl_pengguna`
@@ -537,7 +563,7 @@ ALTER TABLE `tbl_dokumen_kk`
 -- AUTO_INCREMENT for table `tbl_dokumen_ktp`
 --
 ALTER TABLE `tbl_dokumen_ktp`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_jabatan`
@@ -579,7 +605,7 @@ ALTER TABLE `tbl_pendidikan`
 -- AUTO_INCREMENT for table `tbl_penduduk`
 --
 ALTER TABLE `tbl_penduduk`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_pengguna`
@@ -591,13 +617,13 @@ ALTER TABLE `tbl_pengguna`
 -- AUTO_INCREMENT for table `tbl_proyek`
 --
 ALTER TABLE `tbl_proyek`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_saran_dan_masukan`
 --
 ALTER TABLE `tbl_saran_dan_masukan`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_surat_domisili`
@@ -609,7 +635,7 @@ ALTER TABLE `tbl_surat_domisili`
 -- AUTO_INCREMENT for table `tbl_surat_keramaian`
 --
 ALTER TABLE `tbl_surat_keramaian`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -637,7 +663,7 @@ ALTER TABLE `tbl_jurusan_pendidikan`
 -- Constraints for table `tbl_kartu_keluarga`
 --
 ALTER TABLE `tbl_kartu_keluarga`
-  ADD CONSTRAINT `tbl_kartu_keluarga_ibfk_1` FOREIGN KEY (`nik_kepala_keluarga`) REFERENCES `tbl_penduduk` (`nik`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_kartu_keluarga_ibfk_1` FOREIGN KEY (`nik_kepala_keluarga`) REFERENCES `tbl_penduduk` (`nik`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_kepala_desa`
@@ -648,6 +674,12 @@ ALTER TABLE `tbl_kepala_desa`
   ADD CONSTRAINT `tbl_kepala_desa_ibfk_3` FOREIGN KEY (`id_pendidikan`) REFERENCES `tbl_pendidikan` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `tbl_kepala_desa_ibfk_4` FOREIGN KEY (`id_jurusan_pendidikan`) REFERENCES `tbl_jurusan_pendidikan` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `tbl_kepala_desa_ibfk_5` FOREIGN KEY (`id_pengguna`) REFERENCES `tbl_pengguna` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tbl_penduduk`
+--
+ALTER TABLE `tbl_penduduk`
+  ADD CONSTRAINT `tbl_penduduk_ibfk_1` FOREIGN KEY (`id_kartu_keluarga`) REFERENCES `tbl_kartu_keluarga` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_surat_keramaian`
