@@ -102,27 +102,30 @@ else :
             <div class="modal-body">
               
               <input type="hidden" id="xid_penduduk" name="xid_penduduk">
-              
-              <div class="mb-3">
-                <label class="small mb-1" for="xid_kartu_keluarga">KK</label>
-                <select name="xid_kartu_keluarga" class="form-control mb-1 select2" id="xid_kartu_keluarga">
-                  <option value="">-- Pilih --</option>
-                  <?php $query_kk = mysqli_query($connection, "SELECT * FROM tbl_kartu_keluarga ORDER BY nomor_kk ASC") ?>
-                  <?php while ($kk = mysqli_fetch_assoc($query_kk)): ?>
-  
-                    <option value="<?= $kk['id'] ?>"><?= $kk['nomor_kk'] ?></option>
-  
-                  <?php endwhile ?>
-                </select>
-                <div class="mt-1">
-                  <small class="text-danger">Tidak wajib diisi</small>
+
+
+              <div class="row gx-4">
+                
+                <div class="col-md-6 mb-3">
+                  <label class="small mb-1" for="xnik">NIK <span class="text-danger">*</span></label>
+                  <input type="text" name="xnik" minlength="16" maxlength="16" class="form-control" id="xnik" placeholder="Enter nik" required />
                 </div>
+              
+                <div class="col-md-6 mb-3">
+                  <label class="small mb-1" for="xid_kartu_keluarga">KK <small class="text-danger ms-3">(Tidak wajib diisi)</small></label>
+                  <select name="xid_kartu_keluarga" class="form-control mb-1 select2" id="xid_kartu_keluarga">
+                    <option value="">-- Pilih --</option>
+                    <?php $query_kk = mysqli_query($connection, "SELECT * FROM tbl_kartu_keluarga ORDER BY nomor_kk ASC") ?>
+                    <?php while ($kk = mysqli_fetch_assoc($query_kk)): ?>
+    
+                      <option value="<?= $kk['id'] ?>"><?= $kk['nomor_kk'] ?></option>
+    
+                    <?php endwhile ?>
+                  </select>
+                </div>
+
               </div>
-            
-              <div class="mb-3">
-                <label class="small mb-1" for="xnik">NIK <span class="text-danger">*</span></label>
-                <input type="text" name="xnik" minlength="16" maxlength="16" class="form-control" id="xnik" placeholder="Enter nik" required />
-              </div>
+              
             
               <div class="mb-3">
                 <label class="small mb-1" for="xnama_lengkap">Nama Lengkap <span class="text-danger">*</span></label>
@@ -215,9 +218,9 @@ else :
               
               <div class="mb-3">
                 <label class="small mb-1" for="xketerangan_validasi">Keterangan Validasi</label>
-                <input type="text" name="xketerangan_validasi" class="form-control" id="xketerangan_validasi" placeholder="Keterangan atau alasan dari status validasi" />
+                <textarea class="form-control" id="xketerangan_valiadsi" name="xketerangan_valiadsi" rows="5" placeholder="Keterangan atau alasan dari status validasi" autocomplete="off"></textarea>
               </div>
-
+                
             </div>
             <div class="modal-footer">
               <button class="btn btn-light border" type="button" data-bs-dismiss="modal">Batal</button>
