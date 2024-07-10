@@ -64,7 +64,7 @@
               $no = 1;
               $query_dokumen_kk = mysqli_query($connection, 
                 "SELECT
-                  a.id AS id_dokumen_kk, a.status_pengajuan AS status_pengajuan, a.keterangan_pengajuan AS keterangan_pengajuan, a.created_at AS tgl_pengajuan,
+                  a.id AS id_dokumen_kk, a.status_pengajuan, a.keterangan_pengajuan, a.created_at AS tgl_pengajuan,
                   b.id AS id_kartu_keluarga, b.nomor_kk, b.nik_kepala_keluarga,
                   c.id AS id_penduduk, c.nik, c.nama_lengkap, c.jk, c.tmp_lahir, c.tgl_lahir, c.warga_negara, c.agama, c.pekerjaan, c.alamat, c.email, c.status_validasi AS status_validasi_penduduk, c.keterangan_validasi AS keterangan_validasi_penduduk
                 FROM tbl_dokumen_kk AS a
@@ -168,13 +168,13 @@
               <input type="text" name="xnomor_kk_filter" class="form-control" id="xnomor_kk_filter" placeholder="Enter KK"><button class="input-group-text" id="xnomor_kk_filter_btn">Cari</button>
             </div>
           </div>
-  
+
           <table class="table table-hover table-bordered datatables" id="table_cari_by_kk" cellspacing="0" width="100%" style="font-size: 0.875rem">
             <thead>
               <tr>
                 <th>#</th>
                 <th>KK</th>
-                <th>Kepala Keluarga</th>>
+                <th>Kepala Keluarga</th>
                 <th>Warga Negara</th>
                 <th>Pekerjaan</th>
                 <th>Status Pengajuan</th>
@@ -245,14 +245,6 @@
           show: 500,
           hide: 100
         }
-      });
-
-
-      const selectNik = $('#xid_penduduk')
-
-      initSelect2(selectNik, {
-        width: '100%',
-        dropdownParent: "#ModalInputDokumenKK .modal-content .modal-body"
       });
       
       // Re-init all feather icons
@@ -370,6 +362,8 @@
             }
             
             tableCariByNik.clear();
+            
+            let no = 1;
 
             datas.forEach(function(data) {
               let kepala_keluarga = `${data.nama_lengkap}<br><small class="text-muted">(${data.nik_kepala_keluarga})</small>`;
@@ -386,7 +380,7 @@
 
               let tglPengajuan = data.tgl_pengajuan ?? '<small class="text-muted">Belum ada pengajuan</small>';
               
-              let tableData = [1, data.nomor_kk, kepala_keluarga, data.warga_negara, data.pekerjaan, statusPengajuan, tglPengajuan];
+              let tableData = [no++, data.nomor_kk, kepala_keluarga, data.warga_negara, data.pekerjaan, statusPengajuan, tglPengajuan];
               
               tableCariByNik.row.add(tableData);
             });
