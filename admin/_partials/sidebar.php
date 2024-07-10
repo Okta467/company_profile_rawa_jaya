@@ -62,7 +62,7 @@ $user_logged_in = $_SESSION['nama_pegawai'] ?? $_SESSION['nama_guest'] ?? $_SESS
       
       <div class="sidenav-menu-heading">Sosial</div>
       
-      <a class="nav-link <?php if ($current_page === 'pengajuan_bantuan_sosial') echo 'active' ?>" href="pengajuan_bantuan_sosial.php?go=pengajuan_bantuan_sosial">
+      <a class="nav-link <?php if ($current_page === 'bantuan_sosial_pengajuan') echo 'active' ?>" href="bantuan_sosial_pengajuan.php?go=bantuan_sosial_pengajuan">
         <div class="nav-link-icon"><i data-feather="file-text"></i></div>
         Pengajuan
       </a>
