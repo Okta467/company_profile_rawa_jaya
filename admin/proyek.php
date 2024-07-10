@@ -105,14 +105,14 @@ else :
                           </div>
                         </td>
                         <td>
-                          <button type="button" class="btn btn-xs rounded-pill btn-outline-primary toggle_modal_detail"
+                          <button type="button" class="btn btn-xs rounded-pill btn-outline-primary text-nowrap toggle_modal_detail"
                             data-tahapan="<?= htmlspecialchars($proyek['tahapan']) ?>">
                             <i data-feather="list" class="me-1"></i>
                             Lihat Tahapan
                           </button>
                         </td>
                         <td>
-                          <button type="button" class="btn btn-xs rounded-pill btn-outline-primary toggle_modal_detail"
+                          <button type="button" class="btn btn-xs rounded-pill btn-outline-primary text-nowrap toggle_modal_detail"
                             data-detail="<?= htmlspecialchars($proyek['detail']) ?>">
                             <i data-feather="list" class="me-1"></i>
                             Lihat Detail
