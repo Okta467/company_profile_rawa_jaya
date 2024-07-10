@@ -1,8 +1,19 @@
 <?php
     include_once 'config/connection.php';
-    
-    $nomor_kk = $_POST['nomor_kk'];
+    require_once 'vendor/htmlpurifier/HTMLPurifier.auto.php';
 
+    // to sanitize user input
+    $config   = HTMLPurifier_Config::createDefault();
+    $purifier = new HTMLPurifier($config);
+    
+    $nomor_kk = htmlspecialchars($purifier->purify($_POST['nomor_kk']));
+    
+    if (!$nomor_kk) {
+        echo json_encode(array());
+        mysqli_close($connection);
+        return;
+    }
+    
     $stmt1 = mysqli_stmt_init($connection);
     $query = 
         "SELECT

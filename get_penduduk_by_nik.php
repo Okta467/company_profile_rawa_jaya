@@ -1,7 +1,18 @@
 <?php
     include_once 'config/connection.php';
+    require_once 'vendor/htmlpurifier/HTMLPurifier.auto.php';
+
+    // to sanitize user input
+    $config   = HTMLPurifier_Config::createDefault();
+    $purifier = new HTMLPurifier($config);
     
-    $nik = $_POST['nik'];
+    $nik = htmlspecialchars($purifier->purify($_POST['nik']));
+    
+    if (!$nik) {
+        echo json_encode(array());
+        mysqli_close($connection);
+        return;
+    }
 
     $stmt1 = mysqli_stmt_init($connection);
     $query = 

@@ -1,8 +1,13 @@
 <?php
     include_once 'config/connection.php';
-    
-    $nik = $_POST['nik'];
+    require_once 'vendor/htmlpurifier/HTMLPurifier.auto.php';
 
+    // to sanitize user input
+    $config   = HTMLPurifier_Config::createDefault();
+    $purifier = new HTMLPurifier($config);
+    
+    $nik = htmlspecialchars($purifier->purify($_POST['nik']));
+    
     if (!$nik) {
         echo json_encode(array());
         mysqli_close($connection);

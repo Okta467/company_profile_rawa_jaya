@@ -1,7 +1,12 @@
 <?php
     include_once 'config/connection.php';
+    require_once 'vendor/htmlpurifier/HTMLPurifier.auto.php';
+
+    // to sanitize user input
+    $config   = HTMLPurifier_Config::createDefault();
+    $purifier = new HTMLPurifier($config);
     
-    $nomor_kk = $_POST['nomor_kk'];
+    $nomor_kk = htmlspecialchars($purifier->purify($_POST['nomor_kk']));
 
     if (!$nomor_kk) {
         echo json_encode(array());
