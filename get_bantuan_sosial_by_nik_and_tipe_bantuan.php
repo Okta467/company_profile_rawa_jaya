@@ -7,8 +7,9 @@
     $purifier = new HTMLPurifier($config);
     
     $nik = htmlspecialchars($purifier->purify($_POST['nik']));
-
-    if (!$nik) {
+    $tipe_bantuan = htmlspecialchars($purifier->purify($_POST['tipe_bantuan']));
+    
+    if (!$nik || !$tipe_bantuan) {
         echo json_encode(array());
         mysqli_close($connection);
         return;
@@ -25,10 +26,10 @@
             ON b.id = a.id_kartu_keluarga
         LEFT JOIN tbl_bantuan_sosial AS c
             ON a.id = c.id_penduduk
-        WHERE a.nik=?";
+        WHERE a.nik=? AND c.tipe_bantuan=?";
 
     mysqli_stmt_prepare($stmt, $query);
-    mysqli_stmt_bind_param($stmt, 'i', $nik);
+    mysqli_stmt_bind_param($stmt, 'is', $nik, $tipe_bantuan);
     mysqli_stmt_execute($stmt);
 
 	$result = mysqli_stmt_get_result($stmt);
