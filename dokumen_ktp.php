@@ -435,6 +435,8 @@
             }
             
             tableCariByNik.clear();
+            
+            let no = 1;
 
             datas.forEach(function(data) {
               let statusPengajuan;
@@ -449,7 +451,7 @@
 
               let tglPengajuan = data.tgl_pengajuan ?? '<small class="text-muted">Belum ada pengajuan</small>';
 
-              let tableData = [1, data.nik, data.nama_lengkap, data.warga_negara, data.pekerjaan, statusPengajuan, tglPengajuan];
+              let tableData = [no++, data.nik, data.nama_lengkap, data.warga_negara, data.pekerjaan, statusPengajuan, tglPengajuan];
               
               tableCariByNik.row.add(tableData);
             });
