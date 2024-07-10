@@ -47,7 +47,7 @@
             <button class="btn btn-sm btn-outline-primary rounded-pill toggle_modal_tambah"><i data-feather="plus-circle" class="me-1 mb-1"></i>Pengajuan Baru</button>
             <button class="btn btn-sm btn-outline-primary rounded-pill ms-3 toggle_modal_cari_by_kk"><i data-feather="search" class="me-1 mb-1"></i>Cari Berdasarkan KK</button>
             </div>
-          <small class="mb-4 text-muted">Jika KK tidak ditemukan saat pengajuan, silakan isi data Anda sebagai Penduduk Baru <a class="btn-link" href="dokumen_kk.php">di sini</a>.</small>
+          <small class="mb-4 text-muted">Jika KK tidak ditemukan saat pengajuan, harap hubungi Admin <?= SITE_NAME ?> untuk mendata KK baru.</small>
           <table class="table table-striped table-hover table-responsive datatables" id="tabel_dokumen_kk" cellspacing="0" width="100%" style="font-size: 0.875rem">
             <thead>
               <tr>
