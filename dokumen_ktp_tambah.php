@@ -5,7 +5,7 @@
 	// cek apakah tombol submit ditekan sebelum memproses
 	if (!isset($_POST['xsubmit'])) {
 		$_SESSION['msg'] = 'other_error';
-		echo "<meta http-equiv='refresh' content='0;dokumen_ktp.php'>";
+		echo "<meta http-equiv='refresh' content='0;dokumen_ktp.php?administrasi'>";
 		return;
 	}
 
@@ -28,7 +28,7 @@
 
     if (!$penduduk) {
         $_SESSION['msg'] = 'NIK tidak ditemukan!';
-        echo "<meta http-equiv='refresh' content='0;dokumen_ktp.php'>";
+        echo "<meta http-equiv='refresh' content='0;dokumen_ktp.php?administrasi'>";
         return;
     }
 
@@ -50,5 +50,5 @@
     mysqli_stmt_close($stmt_insert);
     mysqli_close($connection);
 
-    echo "<meta http-equiv='refresh' content='0;dokumen_ktp.php'>";
+    echo "<meta http-equiv='refresh' content='0;dokumen_ktp.php?administrasi'>";
 ?>

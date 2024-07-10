@@ -57,7 +57,7 @@
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="surat_domisili.php">Surat Domisili</a></h4>
+              <h4><a href="surat_domisili.php?go=administrasi">Surat Domisili</a></h4>
               <p>Masyarakat mengisi data untuk pembuatan surat domisili.</p>
             </div>
           </div>
@@ -65,7 +65,7 @@
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="surat_keramaian.php">Surat Keramaian</a></h4>
+              <h4><a href="surat_keramaian.php?go=administrasi">Surat Keramaian</a></h4>
               <p>Masyarakat mengisi data untuk pembuatan surat keramaian.</p>
             </div>
           </div>
@@ -73,7 +73,7 @@
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-id-card"></i></div>
-              <h4><a href="dokumen_ktp.php">KTP</a></h4>
+              <h4><a href="dokumen_ktp.php?go=administrasi">KTP</a></h4>
               <p>Pembuatan Kartu Tanda Penduduk masyarakat dengan mengisi data diri.</p>
             </div>
           </div>
@@ -81,7 +81,7 @@
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-group"></i></div>
-              <h4><a href="dokumen_kk.php">KK</a></h4>
+              <h4><a href="dokumen_kk.php?go=administrasi">KK</a></h4>
               <p>Pembuatan Kartu Keluarga dengan mengisi data anggota keluarga.</p>
             </div>
           </div>
@@ -105,14 +105,14 @@
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="bantuan_sosial_pengajuan.php">Pengajuan</a></h4>
+              <h4><a href="bantuan_sosial_pengajuan.php?go=sosial">Pengajuan</a></h4>
               <p>Masyarakat mengisi data diri untuk melakukan pengajuan bansos. Penerima manfaat yaitu yang layak sesuai dengan persyaratan yang berlaku.</p>
             </div>
           </div>
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-wallet"></i></div>
-              <h4><a href="bantuan_sosial_pkh.php">PKH</a></h4>
+              <h4><a href="bantuan_sosial_pkh.php?go=sosial">PKH</a></h4>
               <p>Bantuan sosial bersyarat kepada Keluarga Miskin (KM) yang ditetapkan sebagai penerima manfaat Program Kartu Harapan (PKH).</p>
             </div>
           </div>
@@ -120,7 +120,7 @@
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-wallet"></i></div>
-              <h4><a href="bantuan_sosial_blt.php">BLT</a></h4>
+              <h4><a href="bantuan_sosial_blt.php?go=sosial">BLT</a></h4>
               <p>Bantuan Langsung Tunai untuk melindungi daya beli masyarakat prasejahtera akibat tekanan berbagai kenaikan harga secara global.</p>
             </div>
           </div>
@@ -128,7 +128,7 @@
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-book-reader"></i></div>
-              <h4><a href="bantuan_sosial_pendidikan.php">Pendidikan</a></h4>
+              <h4><a href="bantuan_sosial_pendidikan.php?go=sosial">Pendidikan</a></h4>
               <p>Bantuan pendidikan berupa alat tulis, peralatan olahraga seperti bola voli, bola kaki, bola sepak takraw, dan seragam olahraga.</p>
             </div>
           </div>
