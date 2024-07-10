@@ -214,8 +214,8 @@ else :
               </div>
               
               <div class="mb-3">
-                <label class="small mb-1" for="xketerangan_validasi">Keterangan Validasi <span class="text-danger">*</span></label>
-                <input type="text" name="xketerangan_validasi" class="form-control" id="xketerangan_validasi" placeholder="Keterangan atau alasan dari status validasi" required />
+                <label class="small mb-1" for="xketerangan_validasi">Keterangan Validasi</label>
+                <input type="text" name="xketerangan_validasi" class="form-control" id="xketerangan_validasi" placeholder="Keterangan atau alasan dari status validasi" />
               </div>
 
             </div>
@@ -258,23 +258,50 @@ else :
 
 
         $('.toggle_modal_ubah').on('click', function() {
-          const id_penduduk   = $(this).data('id_penduduk');
-          const nama_lengkap = $(this).data('nama_lengkap');
+          const id_penduduk = $(this).data('id_penduduk');
           
           $('#ModalInputPenduduk .modal-title').html(`<i data-feather="edit" class="me-2 mt-1"></i>Ubah Penduduk`);
           $('#ModalInputPenduduk form').attr({action: 'penduduk_ubah.php', method: 'post'});
-
-          $('#ModalInputPenduduk #xid_penduduk').val(id_penduduk);
-          $('#ModalInputPenduduk #xnama_lengkap').val(nama_lengkap);
-
-          // Re-init all feather icons
-          feather.replace();
           
-          $('#ModalInputPenduduk').modal('show');
+          $.ajax({
+            url: 'get_penduduk.php',
+            method: 'POST',
+            dataType: 'JSON',
+            data: {
+              'id_penduduk': id_penduduk
+            },
+            success: function(data) {
+              console.log(data)
+              
+              $('#ModalInputPenduduk #xid_penduduk').val(data[0].id_penduduk);
+              $('#ModalInputPenduduk #xid_kartu_keluarga').val(data[0].id_kartu_keluarga).trigger('change');
+              $('#ModalInputPenduduk #xnik').val(data[0].nik);
+              $('#ModalInputPenduduk #xnama_lengkap').val(data[0].nama_lengkap);
+              $('#ModalInputPenduduk #xjk').val(data[0].jk).prop('checked', true);
+              $('#ModalInputPenduduk #xtmp_lahir').val(data[0].tmp_lahir);
+              $('#ModalInputPenduduk #xtgl_lahir').val(data[0].tgl_lahir);
+              $('#ModalInputPenduduk #xagama').val(data[0].agama).trigger('change');
+              $('#ModalInputPenduduk #xwarga_negara').val(data[0].warga_negara).trigger('change');
+              $('#ModalInputPenduduk #xpekerjaan').val(data[0].pekerjaan);
+              $('#ModalInputPenduduk #xalamat').val(data[0].alamat);
+              $('#ModalInputPenduduk #xemail').val(data[0].email);
+              $('#ModalInputPenduduk #xstatus_validasi').val(data[0].status_validasi).trigger('change');
+              $('#ModalInputPenduduk #xketerangan_validasi').val(data[0].keterangan_validasi);
+              
+              // Re-init all feather icons
+              feather.replace();
+              
+              $('#ModalInputPenduduk').modal('show');
+            },
+            error: function(request, status, error) {
+              // console.log("ajax call went wrong:" + request.responseText);
+              console.log("ajax call went wrong:" + error);
+            }
+          });
         });
         
 
-        $('#datatablesSimple').on('click', '.toggle_swal_hapus', function() {
+        $('.datatables').on('click', '.toggle_swal_hapus', function() {
           const id_penduduk   = $(this).data('id_penduduk');
           const nama_lengkap = $(this).data('nama_lengkap');
           
@@ -308,6 +335,8 @@ else :
       });
     </script>
 
+
+    <!-- Datatables with child row initialization for `.datatables` -->
     <script>
       // Formatting function for row details - modify as you need
       function format(d) {
