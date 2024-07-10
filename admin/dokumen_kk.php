@@ -112,7 +112,7 @@ else :
     </div>
     <!--/.modal-detail -->
     
-    <!--============================= MODAL INPUT SURAT KERAMAIAN =============================-->
+    <!--============================= MODAL INPUT DOKUMEN KK =============================-->
     <div class="modal fade" id="ModalInputDokumenKK" tabindex="-1" role="dialog" aria-labelledby="ModalInputDokumenKKTitle" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -171,7 +171,7 @@ else :
         </div>
       </di>
     </div>
-    <!--/.modal-input-surat-domisili -->
+    <!--/.modal-input-dokumen-kk -->
     
     <?php include '_partials/script.php' ?>
     <?php include '../helpers/sweetalert2_notify.php' ?>
