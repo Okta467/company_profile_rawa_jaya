@@ -169,6 +169,9 @@ else :
     <!-- PAGE SCRIPT -->
     <script>
       $(document).ready(function() {
+        
+        // Re-init all feather icons
+        feather.replace();
 
         const modalInputSuratDomisiliSelect = $('#ModalInputSuratDomisili .select2');
 
