@@ -295,6 +295,7 @@ else :
       let table = new DataTable('.datatables', {  
         ajax: `<?= base_url_return('admin/get_all_surat_domisili.php') ?>`,
         order: [],
+        scrollX: true,
         columns: [
           {
             className: 'dt-control',
