@@ -93,7 +93,11 @@ else :
 
                       <tr>
                         <td><?= $no++ ?></td>
-                        <td><?= $proyek['nama_proyek'] ?></td>
+                        <td>
+                          <div class="ellipsis toggle_tooltip" title="<?= $proyek['nama_proyek'] ?>">
+                            <?= $proyek['nama_proyek'] ?>
+                          </div>
+                        </td>
                         <td>
                           <div class="ellipsis toggle_tooltip" title="<?= $proyek['tujuan'] ?>">
                             <?= $proyek['tujuan'] ?>
