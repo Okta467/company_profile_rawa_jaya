@@ -40,35 +40,19 @@
 		return;
 	}
 
-    // Get id_alumni if hak_akses is alumni
-    if ($user['hak_akses'] === 'alumni') {
-        $query_alumni = mysqli_query($connection, "SELECT id, nama_alumni, email FROM tbl_alumni WHERE id_pengguna = {$user['id']} LIMIT 1");
-        $alumni = mysqli_fetch_assoc($query_alumni);
-    }
-
-    // Get id_guru if hak akses is kepala_sekolah
-    if ($user['hak_akses'] === 'kepala_sekolah') {
-        $query_guru = mysqli_query($connection, "SELECT id, nama_guru FROM tbl_guru WHERE id_pengguna = {$user['id']} LIMIT 1");
-        $guru = mysqli_fetch_assoc($query_guru);
-    }
-
-    // Get id_perusahaan if hak akses is kepala_sekolah
-    if ($user['hak_akses'] === 'perusahaan') {
-        $query_perusahaan = mysqli_query($connection, "SELECT id, nama_perusahaan FROM tbl_perusahaan WHERE id_pengguna = {$user['id']} LIMIT 1");
-        $perusahaan = mysqli_fetch_assoc($query_perusahaan);
+    // Get id_kepala_desa if hak akses is kepala_desa
+    if ($user['hak_akses'] === 'kepala_desa') {
+        $query_kepala_desa = mysqli_query($connection, "SELECT id, nama_kepala_desa FROM tbl_kepala_desa WHERE id_pengguna = {$user['id']} LIMIT 1");
+        $kepala_desa = mysqli_fetch_assoc($query_kepala_desa);
     }
 
 	// set sesi user sekarang
-	$_SESSION['id_pengguna']     = $user['id'];
-	$_SESSION['id_alumni']       = $alumni['id'] ?? null;
-	$_SESSION['id_guru']         = $guru['id'] ?? null;
-	$_SESSION['id_perusahaan']   = $perusahaan['id'] ?? null;
-	$_SESSION['nama_alumni']     = $alumni['nama_alumni'] ?? null;
-	$_SESSION['nama_guru']       = $guru['nama_guru'] ?? null;
-	$_SESSION['nama_perusahaan'] = $perusahaan['nama_perusahaan'] ?? null;
-	$_SESSION['username']        = $user['username'];
-	$_SESSION['hak_akses']       = $user['hak_akses'];
-	$_SESSION['email']           = $alumni['email'] ?? 'default_email@gmail.com';
+	$_SESSION['id_pengguna']      = $user['id'];
+	$_SESSION['id_kepala_desa']   = $kepala_desa['id'] ?? null;
+	$_SESSION['nama_kepala_desa'] = $kepala_desa['nama_kepala_desa'] ?? null;
+	$_SESSION['username']         = $user['username'];
+	$_SESSION['hak_akses']        = $user['hak_akses'];
+	$_SESSION['email']            = $alumni['email'] ?? 'default_email@gmail.com';
 
 	// Update last login user
 	$last_login = date('Y-m-d H:i:s');
@@ -77,23 +61,11 @@
 	// alihkan user ke halamannya masing-masing
 	switch ($user['hak_akses']) {
 		case 'admin':
-			header("location:admin");
+			header("location:admin?go=dashboard");
 			break;
 
-		case 'alumni':
-			header("location:alumni/login.php?go=dashboard");
-			break;
-			
-		case 'guru':
-			header("location:logout.php");
-			break;
-			
-		case 'kepala_sekolah':
-			header("location:kepala_sekolah/login.php?go=dashboard");
-			break;
-			
-		case 'perusahaan':
-			header("location:perusahaan/login.php?go=dashboard");
+		case 'kepala_desa':
+			header("location:kepala_desa/?go=dashboard");
 			break;
 		
 		default:
