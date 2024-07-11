@@ -16,9 +16,9 @@ else :
   <head>
     <?php include '_partials/head.php' ?>
 
-    <meta name="description" content="Data Pengajuan Bantuan Sosial" />
+    <meta name="description" content="Data Bantuan Sosial Pendidikan" />
     <meta name="author" content="" />
-    <title>Pengajuan Bantuan Sosial - <?= SITE_NAME ?></title>
+    <title>Bantuan Sosial Pendidikan - <?= SITE_NAME ?></title>
   </head>
 
   <body class="nav-fixed">
@@ -39,7 +39,7 @@ else :
             <!-- Custom page header alternative example-->
             <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
               <div class="me-4 mb-3 mb-sm-0">
-                <h1 class="mb-0">Pengajuan Bantuan Sosial</h1>
+                <h1 class="mb-0">Bantuan Sosial Pendidikan</h1>
                 <div class="small">
                   <span class="fw-500 text-primary"><?= date('D') ?></span>
                   &middot; <?= date('M d, Y') ?> &middot; <?= date('H:i') ?> WIB
@@ -59,7 +59,7 @@ else :
               <div class="card-header">
                 <div>
                   <i data-feather="file-text" class="me-2 mt-1"></i>
-                  Data Pengajuan Bantuan Sosial
+                  Data Bantuan Sosial Pendidikan
                 </div>
                 <button class="btn btn-sm btn-primary toggle_modal_tambah" type="button"><i data-feather="plus-circle" class="me-2"></i>Tambah Data</button>
               </div>
@@ -114,11 +114,11 @@ else :
     <!--/.modal-detail -->
     
     <!--============================= MODAL INPUT SURAT KERAMAIAN =============================-->
-    <div class="modal fade" id="ModalInputPengajuanBantuanSosial" tabindex="-1" role="dialog" aria-labelledby="ModalInputPengajuanBantuanSosialTitle" aria-hidden="true">
+    <div class="modal fade" id="ModalInputPengajuanBantuanSosialPendidikan" tabindex="-1" role="dialog" aria-labelledby="ModalInputPengajuanBantuanSosialPendidikanTitle" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="ModalInputPengajuanBantuanSosialTitle">Modal title</h5>
+            <h5 class="modal-title" id="ModalInputPengajuanBantuanSosialPendidikanTitle">Modal title</h5>
             <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <form>
@@ -143,10 +143,7 @@ else :
               <div class="mb-3">
                 <label class="small mb-1" for="xtipe_bantuan">Tipe Bantuan</label>
                 <select name="xtipe_bantuan" class="form-control select2 xtipe_bantuan" id="xtipe_bantuan" required>
-                  <option value="">-- Pilih --</option>
-                  <option value="PKH">PKH</option>
-                  <option value="BLT">BLT</option>
-                  <option value="pendidikan">Pendidikan</option>
+                  <option value="Pendidikan">Pendidikan</option>
                 </select>
               </div>
               
@@ -184,41 +181,40 @@ else :
         // Re-init all feather icons
         feather.replace();
 
-        const modalInputSuratDomisiliSelect = $('#ModalInputPengajuanBantuanSosial .select2');
+        const modalInputSuratDomisiliSelect = $('#ModalInputPengajuanBantuanSosialPendidikan .select2');
 
         initSelect2(modalInputSuratDomisiliSelect, {
           width: '100%',
-          dropdownParent: '#ModalInputPengajuanBantuanSosial .modal-content .modal-body'
+          dropdownParent: '#ModalInputPengajuanBantuanSosialPendidikan .modal-content .modal-body'
         });
         
 
         $('.toggle_modal_tambah').on('click', function() {
-          $('#ModalInputPengajuanBantuanSosial .modal-title').html(`<i data-feather="plus-circle" class="me-2 mt-1"></i>Tambah Pengajuan Bantuan Sosial`);
-          $('#ModalInputPengajuanBantuanSosial form').attr({action: 'bantuan_sosial_pengajuan_tambah.php', method: 'post'});
+          $('#ModalInputPengajuanBantuanSosialPendidikan .modal-title').html(`<i data-feather="plus-circle" class="me-2 mt-1"></i>Tambah Bantuan Sosial Pendidikan`);
+          $('#ModalInputPengajuanBantuanSosialPendidikan form').attr({action: 'bantuan_sosial_pendidikan_tambah.php', method: 'post'});
 
           // Re-init all feather icons
           feather.replace();
           
-          $('#ModalInputPengajuanBantuanSosial').modal('show');
+          $('#ModalInputPengajuanBantuanSosialPendidikan').modal('show');
         });
 
 
         $('.datatables').on('click', '.toggle_modal_ubah', function() {
           const data = $(this).data();
           
-          $('#ModalInputPengajuanBantuanSosial .modal-title').html(`<i data-feather="edit" class="me-2 mt-1"></i>Ubah Pengajuan Bantuan Sosial`);
-          $('#ModalInputPengajuanBantuanSosial form').attr({action: 'bantuan_sosial_pengajuan_ubah.php', method: 'post'});
+          $('#ModalInputPengajuanBantuanSosialPendidikan .modal-title').html(`<i data-feather="edit" class="me-2 mt-1"></i>Ubah Bantuan Sosial Pendidikan`);
+          $('#ModalInputPengajuanBantuanSosialPendidikan form').attr({action: 'bantuan_sosial_pendidikan_ubah.php', method: 'post'});
 
-          $('#ModalInputPengajuanBantuanSosial #xid_bantuan_sosial').val(data.id_bantuan_sosial);
-          $('#ModalInputPengajuanBantuanSosial #xid_penduduk').val(data.id_penduduk).trigger('change');
-          $('#ModalInputPengajuanBantuanSosial #xtipe_bantuan').val(data.tipe_bantuan).trigger('change');
-          $('#ModalInputPengajuanBantuanSosial #xstatus_pengajuan').val(data.status_pengajuan).trigger('change');
-          $('#ModalInputPengajuanBantuanSosial #xketerangan_pengajuan').val(data.keterangan_pengajuan);
+          $('#ModalInputPengajuanBantuanSosialPendidikan #xid_bantuan_sosial').val(data.id_bantuan_sosial);
+          $('#ModalInputPengajuanBantuanSosialPendidikan #xid_penduduk').val(data.id_penduduk).trigger('change');
+          $('#ModalInputPengajuanBantuanSosialPendidikan #xstatus_pengajuan').val(data.status_pengajuan).trigger('change');
+          $('#ModalInputPengajuanBantuanSosialPendidikan #xketerangan_pengajuan').val(data.keterangan_pengajuan);
           
           // Re-init all feather icons
           feather.replace();
           
-          $('#ModalInputPengajuanBantuanSosial').modal('show');
+          $('#ModalInputPengajuanBantuanSosialPendidikan').modal('show');
         });
 
         
@@ -255,7 +251,7 @@ else :
                 icon: "success",
                 timer: 3000
               }).then(() => {
-                window.location = `bantuan_sosial_pengajuan_hapus.php?xid_bantuan_sosial=${id_bantuan_sosial}`;
+                window.location = `bantuan_sosial_pendidikan_hapus.php?xid_bantuan_sosial=${id_bantuan_sosial}`;
               });
             }
           });
@@ -312,7 +308,11 @@ else :
       }
         
       let table = new DataTable('.datatables', {  
-        ajax: `<?= base_url_return('admin/get_all_bantuan_sosial.php') ?>`,
+        ajax: {
+          url: `<?= base_url_return('admin/get_all_bantuan_sosial.php') ?>`,
+          method: 'POST',
+          data: { tipe_bantuan: 'pendidikan' }
+        },
         order: [],
         scrollX: true,
         columns: [
@@ -363,7 +363,6 @@ else :
               return `<button class="btn btn-datatable btn-icon btn-transparent-dark me-2 toggle_modal_ubah"
                   data-id_bantuan_sosial="${data.id_bantuan_sosial}"
                   data-id_penduduk="${data.id_penduduk}"
-                  data-tipe_bantuan="${data.tipe_bantuan}"
                   data-status_pengajuan="${data.status_pengajuan}"
                   data-keterangan_pengajuan="${data.keterangan_pengajuan}">
                   <i class="fa fa-pen-to-square"></i>
