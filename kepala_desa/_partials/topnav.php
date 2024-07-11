@@ -94,9 +94,9 @@ $email_user_logged_in = $_SESSION['email'];
                     </div>
                 </h6>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#!">
+                <a class="dropdown-item" href="profil.php?go=profil">
                     <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
-                    Account
+                    Profil
                 </a>
                 <a class="dropdown-item" href="<?= base_url('logout.php') ?>">
                     <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
