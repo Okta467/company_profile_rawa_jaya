@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 11, 2024 at 03:53 AM
+-- Generation Time: Jul 11, 2024 at 01:41 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -329,7 +329,7 @@ INSERT INTO `tbl_penduduk` (`id`, `id_kartu_keluarga`, `nik`, `nama_lengkap`, `j
 (7, 1, '1671029837882233', 'Okta Alfiansyah', 'l', 'Palembang', '1990-10-10', 'WNI', 'islam', 'Web Developer', 'kertapati', 'oktaalfiansyah@gmail.com', 'sudah_divalidasi', 'acc', '2024-07-09 02:02:23', '2024-07-10 01:59:45'),
 (8, NULL, '1671762837882233', 'Bima Satria', 'l', 'Palembang', '1999-08-28', 'WNI', 'islam', 'Gudang Shopee', 'Palembang', 'bimasatria@gmail.com', 'belum_divalidasi', '', '2024-07-09 09:23:22', '2024-07-10 01:25:52'),
 (10, 1, '6575149193547929', 'Carl Johnson', 'l', 'Palembang', '2001-01-01', 'WNI', 'islam', 'Criminal', 'Los Santos', 'carljohnson@gmail.com', 'belum_divalidasi', '', '2024-07-10 01:32:57', NULL),
-(11, NULL, '343497831960926', 'Razor', 'l', 'Tennese', '1990-03-01', 'WNI', 'islam', 'Expert Driver', 'Tennese', 'Razor@gmail.com', 'belum_divalidasi', '', '2024-07-10 08:02:25', NULL);
+(11, NULL, '343497831960926', 'Razor', 'l', 'Tennese', '1990-03-01', 'WNI', 'islam', 'Expert Driver', 'Tennese', 'Razor@gmail.com', 'belum_divalidasi', 'aaaa', '2024-07-10 08:02:25', '2024-07-11 11:32:34');
 
 -- --------------------------------------------------------
 
@@ -351,9 +351,9 @@ CREATE TABLE `tbl_pengguna` (
 --
 
 INSERT INTO `tbl_pengguna` (`id`, `username`, `password`, `hak_akses`, `created_at`, `last_login`) VALUES
-(9, 'admin', '$2y$10$r6i9ouw57cTTevcboVpfxuaaeGE.LqvH0ivtFunGnpjhus3jtxu1q', 'admin', '2024-06-10 14:42:24', '2024-07-10 20:48:54'),
-(25, '196506121990022003', '$2y$10$r6i9ouw57cTTevcboVpfxuaaeGE.LqvH0ivtFunGnpjhus3jtxu1q', 'kepala_desa', '2024-06-24 18:29:06', '2024-07-10 20:47:00'),
-(35, '1989986520190220', '$2y$10$lCU0QfYKZc03cQL4H4xsa.NjTOG/XWEbf5enHT.DP.dlJLsya7tjO', 'kepala_desa', '2024-06-27 14:46:25', NULL);
+(9, 'admin', '$2y$10$r6i9ouw57cTTevcboVpfxuaaeGE.LqvH0ivtFunGnpjhus3jtxu1q', 'admin', '2024-06-10 14:42:24', '2024-07-11 06:41:18'),
+(25, '196506121990022003', '$2y$10$r6i9ouw57cTTevcboVpfxuaaeGE.LqvH0ivtFunGnpjhus3jtxu1q', 'kepala_desa', '2024-06-24 18:29:06', '2024-07-11 06:41:24'),
+(35, '1989986520190220', '$2y$10$LrNrbSt9hTDGlwWP8vEpj.axs3qGn0aWFd4UYcjL.w5q79LY3Ouiy', 'kepala_desa', '2024-06-27 14:46:25', '2024-07-11 06:41:06');
 
 -- --------------------------------------------------------
 
@@ -411,7 +411,8 @@ INSERT INTO `tbl_saran_dan_masukan` (`id`, `nama_lengkap`, `email`, `perihal`, `
 (5, 'Okta Alfiansyah', 'oktaalfiansyah@gmail.com', 'test perihal', 'test pesan', 1, '2024-07-07 00:54:13', '2024-07-08 01:14:21'),
 (6, 'Okta Alfiansyah', 'oktaalfiansyah@gmail.com', 'test perihal', 'test pesan', 1, '2024-07-07 00:55:53', '2024-07-08 05:26:52'),
 (7, 'Okta Alfiansyah', 'oktaalfiansyah@gmail.com', 'Test Perihal Pimpinan', 'test', 0, '2024-07-07 23:50:57', '2024-07-08 01:13:26'),
-(9, 'Carl Johnson', 'carl@johnson.com', 'Perbaikan jalan X', 'Mohon perbaikan jalannya dipercepat, Pak!', 0, '2024-07-08 01:30:16', '2024-07-10 08:59:11');
+(9, 'Carl Johnson', 'carl@johnson.com', 'Perbaikan jalan X', 'Mohon perbaikan jalannya dipercepat, Pak!', 0, '2024-07-08 01:30:16', '2024-07-10 08:59:11'),
+(10, 'Okta Alfiansyah', 'oktaalfiansyah@gmail.com', 'test perihal', 'test', 0, '2024-07-11 11:23:31', '2024-07-11 11:32:48');
 
 -- --------------------------------------------------------
 
@@ -652,7 +653,7 @@ ALTER TABLE `tbl_proyek`
 -- AUTO_INCREMENT for table `tbl_saran_dan_masukan`
 --
 ALTER TABLE `tbl_saran_dan_masukan`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_surat_domisili`
