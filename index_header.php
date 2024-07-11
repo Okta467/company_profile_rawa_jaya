@@ -13,7 +13,6 @@
         <li><a class="nav-link scrollto" href="#infrastruktur">Infrastruktur</a></li>
         <li><a class="nav-link scrollto" href="#kontak">Kontak</a></li>
         <li><a class="btn btn-outline-info rounded-pill border-2 py-1 px-3 mx-3 ms-lg-4 me-lg-0 mt-3 mt-lg-0 text-white" href="login.php">Masuk</a></li>
-        <li><a class="btn btn-outline-info rounded-pill border-2 py-1 px-3 mx-3 ms-lg-3 me-lg-0 mt-3 mt-lg-0 text-white" href="register.php">Daftar</a></li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->
