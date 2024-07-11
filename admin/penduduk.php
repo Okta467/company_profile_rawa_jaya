@@ -218,7 +218,7 @@ else :
               
               <div class="mb-3">
                 <label class="small mb-1" for="xketerangan_validasi">Keterangan Validasi</label>
-                <textarea class="form-control" id="xketerangan_valiadsi" name="xketerangan_valiadsi" rows="5" placeholder="Keterangan atau alasan dari status validasi" autocomplete="off"></textarea>
+                <textarea class="form-control" id="xketerangan_validasi" name="xketerangan_validasi" rows="5" placeholder="Keterangan atau alasan dari status validasi" autocomplete="off"></textarea>
               </div>
                 
             </div>
@@ -274,8 +274,6 @@ else :
               'id_penduduk': id_penduduk
             },
             success: function(data) {
-              console.log(data)
-              
               $('#ModalInputPenduduk #xid_penduduk').val(data[0].id_penduduk);
               $('#ModalInputPenduduk #xid_kartu_keluarga').val(data[0].id_kartu_keluarga).trigger('change');
               $('#ModalInputPenduduk #xnik').val(data[0].nik);
