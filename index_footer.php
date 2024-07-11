@@ -45,7 +45,7 @@
           <ul>
             <li><i class="bx bx-chevron-right"></i> <a href="surat_domisili.php?go=administrasi">Surat Domisili</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="surat_keramaian.php?go=administrasi">Surat Keramaian</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="dokumen_kk.php?go=administrasi">Dokumen KTP</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="dokumen_ktp.php?go=administrasi">Dokumen KTP</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="dokumen_kk.php?go=administrasi">Dokumen KK</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="#sosial">Bansos</a></li>
           </ul>
