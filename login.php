@@ -55,7 +55,6 @@
                   </form>
                 </div>
                 <div class="card-footer text-center">
-                  <div class="small">Daftar sebagai <a href="alumni_registration.php">Alumni</a> atau <a href="perusahaan_registration.php">Perusahaan</a></div>
                 </div>
               </div>
             </div>
