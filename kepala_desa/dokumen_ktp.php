@@ -87,7 +87,7 @@ else :
             <div class="card card-header-actions mb-4 mt-5">
               <div class="card-header">
                 <div>
-                  <i data-feather="file-text" class="me-2 mt-1"></i>
+                  <i class="far fa-address-card me-2 mt-1"></i>
                   Data Dokumen KTP
                 </div>
               </div>
