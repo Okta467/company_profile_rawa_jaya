@@ -7,6 +7,14 @@ if (!isAccessAllowed('kepala_desa')) :
   echo "<meta http-equiv='refresh' content='0;" . base_url_return('index.php?msg=other_error') . "'>";
 else :
   include_once '../config/connection.php';
+  
+  $dari_tanggal = $_GET['dari_tanggal'] ?? null;
+  $sampai_tanggal = $_GET['sampai_tanggal'] ?? null;
+
+  if (!$dari_tanggal || !$sampai_tanggal) {
+    echo 'Input dari dan sampai tanggal harus diisi!';
+    return;
+  }
 ?>
 
 
@@ -18,19 +26,12 @@ else :
 
     <meta name="description" content="Data Pengumuman" />
     <meta name="author" content="" />
-    <title>Pengumuman - <?= SITE_NAME ?></title>
+    <title>Laporan Proyek <?= "({$dari_tanggal} s.d. {$sampai_tanggal})" ?></title>
   </head>
 
   <body class="bg-white">
     <?php
     $no = 1;
-    $dari_tanggal = $_GET['dari_tanggal'] ?? null;
-    $sampai_tanggal = $_GET['sampai_tanggal'] ?? null;
-
-    if (!$dari_tanggal || !$sampai_tanggal) {
-      echo 'Input dari dan sampai tanggal harus diisi!';
-      return;
-    }
 
     $stmt_proyek = mysqli_stmt_init($connection);
     $query_proyek ="SELECT * FROM tbl_proyek WHERE created_at BETWEEN ? AND ? ORDER BY id DESC";
