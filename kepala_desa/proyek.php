@@ -90,7 +90,6 @@ else :
                   <i class="far fa-building me-2"></i>
                   Data Proyek
                 </div>
-                <a class="btn btn-sm btn-primary" href="proyek_halaman_tambah_or_ubah.php?go=proyek"><i data-feather="plus-circle" class="me-2"></i>Tambah Data</a>
               </div>
               <div class="card-body">
                 <table id="datatablesSimple">
