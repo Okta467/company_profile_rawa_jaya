@@ -19,8 +19,8 @@
     $nama_proyek   = htmlspecialchars($purifier->purify($_POST['xnama_proyek']));
     $tujuan        = htmlspecialchars($purifier->purify($_POST['xtujuan']));
     $manfaat       = htmlspecialchars($purifier->purify($_POST['xmanfaat']));
-    $tahapan       = htmlspecialchars($purifier->purify($_POST['xtahapan']));
-    $detail        = htmlspecialchars($purifier->purify($_POST['xdetail']));
+    $tahapan       = str_replace('`', '\`', $purifier->purify($_POST['xtahapan']));
+    $detail        = str_replace('`', '\`', $purifier->purify($_POST['xdetail']));
     $status_proyek = $_POST['xstatus_proyek'];
     $tgl_proyek    = $_POST['xtgl_proyek'];
 

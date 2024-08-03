@@ -215,14 +215,14 @@ else :
         toggleSwalSubmit(formSubmitBtn, eventName, formElement);
 
         
-        const tahapan = `<?= "{$tahapan}" ?>`;
-        const sanitizedTahapan = DOMPurify.sanitize(tahapan, { USE_PROFILES: { html: true } });
+        const tahapan = `<?= htmlspecialchars($tahapan, ENT_QUOTES, 'UTF-8') ?>`;
+        const sanitizedTahapan = DOMPurify.sanitize(`<?= "{$tahapan}" ?>`, { USE_PROFILES: { html: true } });
         
         easyMDETahapanProyek.value(sanitizedTahapan)
 
 
-        const detail = `<?= "{$detail}" ?>`;
-        const sanitizedDetail = DOMPurify.sanitize(detail, { USE_PROFILES: { html: true } });
+        const detail = `<?= htmlspecialchars($detail, ENT_QUOTES, 'UTF-8') ?>`;
+        const sanitizedDetail = DOMPurify.sanitize(`<?= "{$detail}" ?>`, { USE_PROFILES: { html: true } });
         
         easyMDEDetailProyek.value(sanitizedDetail)
       });
