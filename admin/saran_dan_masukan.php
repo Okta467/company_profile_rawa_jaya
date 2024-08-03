@@ -79,7 +79,7 @@ else :
                   <tbody>
                     <?php
                     $no = 1;
-                    $query_saran_dan_masukan = mysqli_query($connection, "SELECT *  FROM tbl_saran_dan_masukan ORDER BY id DESC");
+                    $query_saran_dan_masukan = mysqli_query($connection, "SELECT * FROM tbl_saran_dan_masukan ORDER BY id DESC");
 
                     while ($saran_dan_masukan = mysqli_fetch_assoc($query_saran_dan_masukan)):
                     ?>
@@ -118,6 +118,7 @@ else :
                           </button>
                           <button class="btn btn-datatable btn-icon btn-transparent-dark me-2 toggle_swal_hapus"
                             data-id_saran_dan_masukan="<?= $saran_dan_masukan['id'] ?>" 
+                            data-perihal="<?= $saran_dan_masukan['perihal'] ?>" 
                             data-nama_lengkap="<?= $saran_dan_masukan['nama_lengkap'] ?>">
                             <i class="fa fa-trash-can"></i>
                           </button>
@@ -322,11 +323,12 @@ else :
 
         $('#datatablesSimple').on('click', '.toggle_swal_hapus', function() {
           const id_saran_dan_masukan   = $(this).data('id_saran_dan_masukan');
-          const nama_saran_dan_masukan = $(this).data('nama_saran_dan_masukan');
+          const perihal = $(this).data('perihal');
+          const nama_lengkap = $(this).data('nama_lengkap');
           
           Swal.fire({
             title: "Konfirmasi Tindakan?",
-            html: `Hapus data saran_dan_masukan: <strong>${nama_saran_dan_masukan}?</strong>`,
+            html: `<div class="mb-1">Hapus data saran dan masukan dari: </div><strong>${nama_lengkap} (${perihal})?</strong>`,
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
