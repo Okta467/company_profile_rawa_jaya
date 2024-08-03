@@ -17,6 +17,10 @@
 
 <link href="<?= base_url('assets/css/MY_styles.css') ?>" rel="stylesheet" />
 
+<?php if (isset($_GET['go']) && $_GET['go'] != 'proyek'): ?>
 <script data-search-pseudo-elements defer src="<?= base_url('assets/js/fontawesome/fontawesome-all.min.js') ?>" crossorigin="anonymous"></script>
+<?php else: ?>
+<script defer src="<?= base_url('assets/js/fontawesome/fontawesome-all.min.js') ?>" crossorigin="anonymous"></script>
+<?php endif ?>
 
 <script src="<?= base_url('assets/js/feather/feather.min.js') ?>" crossorigin="anonymous"></script>
