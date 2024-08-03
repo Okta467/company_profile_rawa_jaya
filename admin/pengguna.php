@@ -71,7 +71,6 @@ else :
                       <th>Pengguna</th>
                       <th>Username</th>
                       <th>Hak Akses</th>
-                      <th>Jabatan</th>
                       <th>Tanggal Bergabung</th>
                       <th>Login Terakhir</th>
                       <th>Aksi</th>
@@ -84,13 +83,10 @@ else :
                     $query_pengguna = mysqli_query($connection,
                       "SELECT 
                         a.id AS id_pengguna, a.username, a.hak_akses, a.created_at, a.last_login,
-                        b.id AS id_kepala_desa, b.nip AS nip_kepala_desa, b.nama_kepala_desa, b.jk AS jk_kepala_desa,
-                        c.id AS id_jabatan, c.nama_jabatan AS nama_jabatan_kepala_desa
+                        b.id AS id_kepala_desa, b.nip AS nip_kepala_desa, b.nama_kepala_desa, b.jk AS jk_kepala_desa
                       FROM tbl_pengguna AS a
                       LEFT JOIN tbl_kepala_desa AS b
                         ON a.id = b.id_pengguna
-                      LEFT JOIN tbl_jabatan AS c
-                        ON c.id = b.id_jabatan
                       ORDER BY a.id DESC");
   
                     while ($pengguna = mysqli_fetch_assoc($query_pengguna)) :
@@ -126,23 +122,6 @@ else :
                             
                           <?php endif ?>
                           
-                        </td>
-                        <td>
-                          <div class="ellipsis">
-  
-                            <?php if ($pengguna['hak_akses'] === 'admin'): ?>
-    
-                              <small class="text-muted">Tidak ada</small>
-    
-                            <?php else: ?>
-    
-                              <span class="toggle_tooltip" title="<?= $pengguna['nama_jabatan_kepala_desa'] ?? $pengguna['nama_jabatan_kepala_desa'] ?>">
-                                <?= $pengguna['nama_jabatan_kepala_desa'] ?? $pengguna['nama_jabatan_kepala_desa'] ?>
-                              </span>
-                              
-                            <?php endif ?>
-                            
-                          </div>
                         </td>
                         <td><?= $tanggal_bergabung ?></td>
                         <td><?= $last_login ?></td>

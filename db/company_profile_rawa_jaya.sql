@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 11, 2024 at 01:41 PM
+-- Generation Time: Aug 03, 2024 at 12:53 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -45,7 +45,8 @@ INSERT INTO `tbl_bantuan_sosial` (`id`, `id_penduduk`, `tipe_bantuan`, `status_p
 (1, 7, 'pendidikan', 'belum_diproses', '', '2024-07-10 00:26:50', NULL),
 (2, 7, 'PKH', 'belum_diproses', '', '2024-07-10 00:29:05', NULL),
 (3, 8, 'BLT', 'belum_diproses', '', '2024-07-10 00:29:16', NULL),
-(5, 11, 'BLT', 'sudah_diproses', 'Acc', '2024-07-10 23:32:57', NULL);
+(5, 11, 'BLT', 'sudah_diproses', 'Acc', '2024-07-10 23:32:57', NULL),
+(9, 14, 'pendidikan', 'sudah_diproses', 'ACC', '2024-08-03 09:04:43', '2024-08-03 09:05:06');
 
 -- --------------------------------------------------------
 
@@ -91,37 +92,6 @@ CREATE TABLE `tbl_dokumen_ktp` (
 INSERT INTO `tbl_dokumen_ktp` (`id`, `id_penduduk`, `status_pengajuan`, `keterangan_pengajuan`, `created_at`, `updated_at`) VALUES
 (1, 7, 'belum_diproses', '', '2024-07-09 09:10:40', NULL),
 (2, 7, 'sudah_diproses', '', '2024-07-09 09:24:10', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_jabatan`
---
-
-CREATE TABLE `tbl_jabatan` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `nama_jabatan` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_jabatan`
---
-
-INSERT INTO `tbl_jabatan` (`id`, `nama_jabatan`, `created_at`, `updated_at`) VALUES
-(1, 'Kepala Sekolah', '2024-05-20 12:45:34', NULL),
-(2, 'Wakil Kepala Sekolah', '2024-05-20 12:45:34', NULL),
-(3, 'Bendahara', '2024-05-20 12:45:34', NULL),
-(4, 'Tata Usaha/Administrasi', '2024-05-20 12:45:34', NULL),
-(5, 'Wali Kelas', '2024-05-20 12:45:34', NULL),
-(6, 'Piket', '2024-05-20 12:45:34', NULL),
-(7, 'Bimbingan Konseling', '2024-05-20 12:45:34', NULL),
-(8, 'Penjaga Sekolah', '2024-05-20 12:45:34', NULL),
-(9, 'Kebersihan', '2024-05-20 12:45:34', '2024-05-20 12:53:45'),
-(10, 'Tenaga Administrasi Sekolah', '2024-05-20 12:45:34', NULL),
-(11, 'Perpustakaan', '2024-05-20 12:45:34', NULL),
-(12, 'Operator', '2024-05-20 12:45:34', NULL);
 
 -- --------------------------------------------------------
 
@@ -185,7 +155,8 @@ CREATE TABLE `tbl_kartu_keluarga` (
 --
 
 INSERT INTO `tbl_kartu_keluarga` (`id`, `nomor_kk`, `nik_kepala_keluarga`, `created_at`, `updated_at`) VALUES
-(1, '1814068529145487', '1671029837882233', '2024-07-09 21:32:47', NULL);
+(1, '1814068529145487', '1671029837882233', '2024-07-09 21:32:47', NULL),
+(7, '1814067189145487', '1234567890267354', '2024-08-03 09:23:14', NULL);
 
 -- --------------------------------------------------------
 
@@ -196,7 +167,6 @@ INSERT INTO `tbl_kartu_keluarga` (`id`, `nomor_kk`, `nik_kepala_keluarga`, `crea
 CREATE TABLE `tbl_kepala_desa` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_pengguna` int(10) UNSIGNED DEFAULT NULL,
-  `id_jabatan` int(10) UNSIGNED DEFAULT NULL,
   `id_pangkat_golongan` int(10) UNSIGNED DEFAULT NULL,
   `id_pendidikan` int(10) UNSIGNED DEFAULT NULL,
   `id_jurusan_pendidikan` int(10) UNSIGNED DEFAULT NULL,
@@ -215,15 +185,15 @@ CREATE TABLE `tbl_kepala_desa` (
 -- Dumping data for table `tbl_kepala_desa`
 --
 
-INSERT INTO `tbl_kepala_desa` (`id`, `id_pengguna`, `id_jabatan`, `id_pangkat_golongan`, `id_pendidikan`, `id_jurusan_pendidikan`, `nip`, `nama_kepala_desa`, `jk`, `alamat`, `tmp_lahir`, `tgl_lahir`, `tahun_ijazah`, `created_at`, `updated_at`) VALUES
-(1, 25, 1, 1, 9, 4, '196506121990022003', 'Sukarti', 'l', 'Palembang', 'Palembang', '2024-05-01', 2009, '2024-05-23 08:29:39', '2024-06-27 18:20:41'),
-(4, NULL, 5, 9, 9, 4, '199204202015031006', 'Della Rizky Andini', 'l', 'Plaju', 'Palembang', '2024-05-06', 2014, '2024-05-25 17:52:18', '2024-06-24 12:14:30'),
-(5, NULL, 5, 9, 9, 4, '198912252019022005', 'Sudaryani', 'p', 'Plaju', 'Prabumulih', '2020-04-30', 2011, '2024-05-25 17:53:27', '2024-06-24 12:11:48'),
-(6, NULL, 5, 9, 9, 4, '1988103020201901', 'Sulastinah', 'p', 'Plaju', 'Prabumulih', '2024-05-05', 2010, '2024-05-26 09:59:45', '2024-06-24 12:11:48'),
-(7, NULL, 4, 5, 10, 37, '1234567890123456', 'Abdul Kadir, M.Kom.', 'l', 'Depok', 'Depok', '2024-04-30', 2010, '2024-06-10 15:46:11', '2024-06-24 12:14:30'),
-(8, NULL, 5, 5, 9, 33, '9999999999888777', 'Nur Widyasti', 'p', 'Palembang', 'Palembang', '2024-03-31', 2010, '2024-06-10 18:02:33', '2024-06-24 12:14:30'),
-(9, NULL, 5, 4, 9, 34, '1979762520140320', 'Susmayasari', 'p', 'Palembang', 'Palembang', '2024-05-26', 2014, '2024-06-10 19:01:29', '2024-06-24 12:14:30'),
-(10, 35, 5, 4, 9, 4, '1989986520190220', 'Nunsianah', 'p', 'Plaju', 'Palembang', '2024-05-26', 2010, '2024-06-10 19:02:12', '2024-06-27 14:46:25');
+INSERT INTO `tbl_kepala_desa` (`id`, `id_pengguna`, `id_pangkat_golongan`, `id_pendidikan`, `id_jurusan_pendidikan`, `nip`, `nama_kepala_desa`, `jk`, `alamat`, `tmp_lahir`, `tgl_lahir`, `tahun_ijazah`, `created_at`, `updated_at`) VALUES
+(1, 25, 1, 9, 4, '196506121990022003', 'Sukarti', 'l', 'Palembang', 'Palembang', '2024-05-01', 2009, '2024-05-23 08:29:39', '2024-06-27 18:20:41'),
+(4, 48, 9, 9, 4, '199204202015031006', 'Della Rizky Andini', 'l', 'Plaju', 'Palembang', '2024-05-06', 2014, '2024-05-25 17:52:18', '2024-08-03 09:21:22'),
+(5, NULL, 9, 9, 4, '198912252019022005', 'Sudaryani', 'p', 'Plaju', 'Prabumulih', '2020-04-30', 2011, '2024-05-25 17:53:27', '2024-06-24 12:11:48'),
+(6, NULL, 9, 9, 4, '1988103020201901', 'Sulastinah', 'p', 'Plaju', 'Prabumulih', '2024-05-05', 2010, '2024-05-26 09:59:45', '2024-06-24 12:11:48'),
+(7, NULL, 5, 10, 37, '1234567890123456', 'Abdul Kadir, M.Kom.', 'l', 'Depok', 'Depok', '2024-04-30', 2010, '2024-06-10 15:46:11', '2024-06-24 12:14:30'),
+(8, NULL, 5, 9, 33, '9999999999888777', 'Nur Widyasti', 'p', 'Palembang', 'Palembang', '2024-03-31', 2010, '2024-06-10 18:02:33', '2024-06-24 12:14:30'),
+(9, NULL, 4, 9, 34, '1979762520140320', 'Susmayasari', 'p', 'Palembang', 'Palembang', '2024-05-26', 2014, '2024-06-10 19:01:29', '2024-06-24 12:14:30'),
+(10, 35, 4, 9, 4, '1989986520190220', 'Nunsianah', 'p', 'Plaju', 'Palembang', '2024-05-26', 2010, '2024-06-10 19:02:12', '2024-06-27 14:46:25');
 
 -- --------------------------------------------------------
 
@@ -329,7 +299,8 @@ INSERT INTO `tbl_penduduk` (`id`, `id_kartu_keluarga`, `nik`, `nama_lengkap`, `j
 (7, 1, '1671029837882233', 'Okta Alfiansyah', 'l', 'Palembang', '1990-10-10', 'WNI', 'islam', 'Web Developer', 'kertapati', 'oktaalfiansyah@gmail.com', 'sudah_divalidasi', 'acc', '2024-07-09 02:02:23', '2024-07-10 01:59:45'),
 (8, NULL, '1671762837882233', 'Bima Satria', 'l', 'Palembang', '1999-08-28', 'WNI', 'islam', 'Gudang Shopee', 'Palembang', 'bimasatria@gmail.com', 'belum_divalidasi', '', '2024-07-09 09:23:22', '2024-07-10 01:25:52'),
 (10, 1, '6575149193547929', 'Carl Johnson', 'l', 'Palembang', '2001-01-01', 'WNI', 'islam', 'Criminal', 'Los Santos', 'carljohnson@gmail.com', 'belum_divalidasi', '', '2024-07-10 01:32:57', NULL),
-(11, NULL, '343497831960926', 'Razor', 'l', 'Tennese', '1990-03-01', 'WNI', 'islam', 'Expert Driver', 'Tennese', 'Razor@gmail.com', 'belum_divalidasi', 'aaaa', '2024-07-10 08:02:25', '2024-07-11 11:32:34');
+(11, NULL, '343497831960926', 'Razor', 'l', 'Tennese', '1990-03-01', 'WNI', 'islam', 'Expert Driver', 'Tennese', 'Razor@gmail.com', 'belum_divalidasi', 'aaaa', '2024-07-10 08:02:25', '2024-07-11 11:32:34'),
+(14, NULL, '1234567890267354', 'Test Penduduk Baru', 'l', 'Palembang', '2024-08-14', 'WNI', 'islam', 'Buruh', 'kertapati', 'test_penduduk_baru@gmail.com', 'sudah_divalidasi', '', '2024-08-03 09:03:37', '2024-08-03 09:24:20');
 
 -- --------------------------------------------------------
 
@@ -351,9 +322,10 @@ CREATE TABLE `tbl_pengguna` (
 --
 
 INSERT INTO `tbl_pengguna` (`id`, `username`, `password`, `hak_akses`, `created_at`, `last_login`) VALUES
-(9, 'admin', '$2y$10$r6i9ouw57cTTevcboVpfxuaaeGE.LqvH0ivtFunGnpjhus3jtxu1q', 'admin', '2024-06-10 14:42:24', '2024-07-11 06:41:18'),
-(25, '196506121990022003', '$2y$10$r6i9ouw57cTTevcboVpfxuaaeGE.LqvH0ivtFunGnpjhus3jtxu1q', 'kepala_desa', '2024-06-24 18:29:06', '2024-07-11 06:41:24'),
-(35, '1989986520190220', '$2y$10$LrNrbSt9hTDGlwWP8vEpj.axs3qGn0aWFd4UYcjL.w5q79LY3Ouiy', 'kepala_desa', '2024-06-27 14:46:25', '2024-07-11 06:41:06');
+(9, 'admin', '$2y$10$r6i9ouw57cTTevcboVpfxuaaeGE.LqvH0ivtFunGnpjhus3jtxu1q', 'admin', '2024-06-10 14:42:24', '2024-08-03 05:52:30'),
+(25, '196506121990022003', '$2y$10$r6i9ouw57cTTevcboVpfxuaaeGE.LqvH0ivtFunGnpjhus3jtxu1q', 'kepala_desa', '2024-06-24 18:29:06', '2024-08-03 05:52:34'),
+(35, '1989986520190220', '$2y$10$LrNrbSt9hTDGlwWP8vEpj.axs3qGn0aWFd4UYcjL.w5q79LY3Ouiy', 'kepala_desa', '2024-06-27 14:46:25', '2024-07-11 06:41:06'),
+(48, '199204202015031006', '$2y$10$tdolvI.ZurKGCU7RUbyg2.p4mW1A7xkGq.W8ftvxbh5ptdIjtqkma', 'kepala_desa', '2024-08-03 09:21:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -380,7 +352,8 @@ CREATE TABLE `tbl_proyek` (
 
 INSERT INTO `tbl_proyek` (`id`, `nama_proyek`, `tujuan`, `manfaat`, `tahapan`, `detail`, `status_proyek`, `tgl_proyek`, `created_at`, `updated_at`) VALUES
 (1, 'Perbaikan Jalan X', 'Memperbaiki jalan rusak di alamat X', 'Akses jalan utama warga dapat kembali digunakan', '1. Tahapan ke-1\r\n2. Tahapan ke-2\r\n3. Tahapan ke-3\r\n4. Tahapan ke-4', '#### Anggaran\r\nRpxx.000.000.000\r\n\r\n#### Detail ke-1\r\nteks detail ke-1\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Illum reprehenderit repellendus ea officia quidem exercitationem, quia et explicabo alias, autem sapiente odit quasi, tenetur corporis necessitatibus laborum sequi temporibus quos.\r\n\r\n#### Detail ke-2\r\nteks detail ke-2\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Illum reprehenderit repellendus ea officia quidem exercitationem, quia et explicabo alias, autem sapiente odit quasi, tenetur corporis necessitatibus laborum sequi temporibus quos.\r\n\r\n#### Detail ke-3\r\nteks detail ke-3\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Illum reprehenderit repellendus ea officia quidem exercitationem, quia et explicabo alias, autem sapiente odit quasi, tenetur corporis necessitatibus laborum sequi temporibus quos.', 'sedang_dikerjakan', '2018-02-07', '2024-07-07 23:12:55', '2024-07-08 05:11:00'),
-(3, 'Pembangunan Parit di Jalan Y', 'Membebaskan desa dari masalah banjir tahunan', 'Mencegah banjir, menjaga lingkungan agar tetap bersih', 'Adapun tahapan dalam realisasi parit di jalan Y di antaranya sebagai berikut:\r\n1. Abcdefgh\r\n2. Ijklmnopqrstu\r\n3. Vwxyz', '#### Anggaran\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ullam at enim quisquam praesentium vel illo, quod eum harum unde impedit omnis veniam dolor nihil maxime molestias a aspernatur molestiae?\r\n\r\n#### Ketua Pelaksana\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ullam at enim quisquam praesentium vel illo, quod eum harum unde impedit omnis veniam dolor nihil maxime molestias a aspernatur molestiae?\r\n\r\n#### Penanggung Jawab\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ullam at enim quisquam praesentium vel illo, quod eum harum unde impedit omnis veniam dolor nihil maxime molestias a aspernatur molestiae?\r\n\r\n#### Daftar Pekerja\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ullam at enim quisquam praesentium vel illo, quod eum harum unde impedit omnis veniam dolor nihil maxime molestias a aspernatur molestiae?\r\n1. kjnjnknk\r\n2. kjjknkjnkjn\r\n3. nknkjnjknj\r\n\r\n#### Lokasi\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ullam at enim quisquam praesentium vel illo, quod eum harum unde impedit omnis veniam dolor nihil maxime molestias a aspernatur molestiae?', 'akan_dikerjakan', '2020-05-01', '2024-07-08 05:17:57', '2024-07-08 05:19:57');
+(3, 'Pembangunan Parit di Jalan Y', 'Membebaskan desa dari masalah banjir tahunan', 'Mencegah banjir, menjaga lingkungan agar tetap bersih', 'Adapun tahapan dalam realisasi parit di jalan Y di antaranya sebagai berikut:\r\n1. Abcdefgh\r\n2. Ijklmnopqrstu\r\n3. Vwxyz', '#### Anggaran\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ullam at enim quisquam praesentium vel illo, quod eum harum unde impedit omnis veniam dolor nihil maxime molestias a aspernatur molestiae?\r\n\r\n#### Ketua Pelaksana\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ullam at enim quisquam praesentium vel illo, quod eum harum unde impedit omnis veniam dolor nihil maxime molestias a aspernatur molestiae?\r\n\r\n#### Penanggung Jawab\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ullam at enim quisquam praesentium vel illo, quod eum harum unde impedit omnis veniam dolor nihil maxime molestias a aspernatur molestiae?\r\n\r\n#### Daftar Pekerja\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ullam at enim quisquam praesentium vel illo, quod eum harum unde impedit omnis veniam dolor nihil maxime molestias a aspernatur molestiae?\r\n1. kjnjnknk\r\n2. kjjknkjnkjn\r\n3. nknkjnjknj\r\n\r\n#### Lokasi\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ullam at enim quisquam praesentium vel illo, quod eum harum unde impedit omnis veniam dolor nihil maxime molestias a aspernatur molestiae?', 'akan_dikerjakan', '2020-05-01', '2024-07-08 05:17:57', '2024-07-08 05:19:57'),
+(4, 'Test Proyek Baru', 'Mengenalkan Proyek Baru', 'Mengetahui Proyek Baru', '### Ini Judul Proyek\r\nIni adalah paragraf proyek. Untuk menambahkan baris baru, cukup tambahkan frasa  \\`<br />\\` seperti ini\r\nini adalah baris selanjutnya dari baris pertama.\r\n\r\n### Ini Judul Proyek Kedua\r\nlasdklasdkalsdjsalkj', '#### Langkah Pengerjaan\r\n1. Cara pertama\r\n2. Cara kedua\r\n3. Cara ketiga\r\n4. ...\r\n5. Cara ke-n', 'sedang_dikerjakan', '2024-08-03', '2024-08-03 09:28:01', '2024-08-03 09:50:29');
 
 -- --------------------------------------------------------
 
@@ -412,7 +385,7 @@ INSERT INTO `tbl_saran_dan_masukan` (`id`, `nama_lengkap`, `email`, `perihal`, `
 (6, 'Okta Alfiansyah', 'oktaalfiansyah@gmail.com', 'test perihal', 'test pesan', 1, '2024-07-07 00:55:53', '2024-07-08 05:26:52'),
 (7, 'Okta Alfiansyah', 'oktaalfiansyah@gmail.com', 'Test Perihal Pimpinan', 'test', 0, '2024-07-07 23:50:57', '2024-07-08 01:13:26'),
 (9, 'Carl Johnson', 'carl@johnson.com', 'Perbaikan jalan X', 'Mohon perbaikan jalannya dipercepat, Pak!', 0, '2024-07-08 01:30:16', '2024-07-10 08:59:11'),
-(10, 'Okta Alfiansyah', 'oktaalfiansyah@gmail.com', 'test perihal', 'test', 0, '2024-07-11 11:23:31', '2024-07-11 11:32:48');
+(10, 'Okta Alfiansyah', 'oktaalfiansyah@gmail.com', 'test perihal', 'test', 0, '2024-07-11 11:23:31', '2024-08-03 09:24:35');
 
 -- --------------------------------------------------------
 
@@ -435,7 +408,8 @@ CREATE TABLE `tbl_surat_domisili` (
 
 INSERT INTO `tbl_surat_domisili` (`id`, `id_penduduk`, `status_pengajuan`, `keterangan_pengajuan`, `created_at`, `updated_at`) VALUES
 (1, 7, 'belum_diproses', 'acc', '2024-07-09 21:24:33', '2024-07-10 08:18:49'),
-(3, 8, 'belum_diproses', '', '2024-07-10 08:43:58', NULL);
+(3, 8, 'belum_diproses', '', '2024-07-10 08:43:58', NULL),
+(4, 14, 'sudah_diproses', 'Acc', '2024-08-03 09:25:10', NULL);
 
 -- --------------------------------------------------------
 
@@ -460,7 +434,8 @@ CREATE TABLE `tbl_surat_keramaian` (
 INSERT INTO `tbl_surat_keramaian` (`id`, `id_penduduk`, `perihal`, `status_pengajuan`, `keterangan_pengajuan`, `created_at`, `updated_at`) VALUES
 (1, 7, 'test', 'belum_diproses', '', '2024-07-09 05:38:32', NULL),
 (2, 8, 'Test perihal Bima', 'belum_diproses', '', '2024-07-09 20:41:02', NULL),
-(3, 8, 'Test perihal Bima kedua', 'belum_diproses', 'Pengajuan sedang diproses, harap tunggu.', '2024-07-09 20:41:23', '2024-07-09 20:48:32');
+(3, 8, 'Test perihal Bima kedua', 'belum_diproses', 'Pengajuan sedang diproses, harap tunggu.', '2024-07-09 20:41:23', '2024-07-09 20:48:32'),
+(5, 14, 'Test Perihal dari Penduduk Baru', 'belum_diproses', '', '2024-08-03 09:04:06', NULL);
 
 --
 -- Indexes for dumped tables
@@ -488,12 +463,6 @@ ALTER TABLE `tbl_dokumen_ktp`
   ADD KEY `id_penduduk` (`id_penduduk`);
 
 --
--- Indexes for table `tbl_jabatan`
---
-ALTER TABLE `tbl_jabatan`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `tbl_jurusan_pendidikan`
 --
 ALTER TABLE `tbl_jurusan_pendidikan`
@@ -517,7 +486,6 @@ ALTER TABLE `tbl_kepala_desa`
   ADD KEY `id_jurusan_pendidikan` (`id_jurusan_pendidikan`),
   ADD KEY `id_pangkat_golongan` (`id_pangkat_golongan`),
   ADD KEY `id_pendidikan` (`id_pendidikan`),
-  ADD KEY `id_jabatan` (`id_jabatan`),
   ADD KEY `id_pengguna` (`id_pengguna`);
 
 --
@@ -581,7 +549,7 @@ ALTER TABLE `tbl_surat_keramaian`
 -- AUTO_INCREMENT for table `tbl_bantuan_sosial`
 --
 ALTER TABLE `tbl_bantuan_sosial`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_dokumen_kk`
@@ -596,12 +564,6 @@ ALTER TABLE `tbl_dokumen_ktp`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `tbl_jabatan`
---
-ALTER TABLE `tbl_jabatan`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
 -- AUTO_INCREMENT for table `tbl_jurusan_pendidikan`
 --
 ALTER TABLE `tbl_jurusan_pendidikan`
@@ -611,7 +573,7 @@ ALTER TABLE `tbl_jurusan_pendidikan`
 -- AUTO_INCREMENT for table `tbl_kartu_keluarga`
 --
 ALTER TABLE `tbl_kartu_keluarga`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_kepala_desa`
@@ -635,37 +597,37 @@ ALTER TABLE `tbl_pendidikan`
 -- AUTO_INCREMENT for table `tbl_penduduk`
 --
 ALTER TABLE `tbl_penduduk`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tbl_pengguna`
 --
 ALTER TABLE `tbl_pengguna`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `tbl_proyek`
 --
 ALTER TABLE `tbl_proyek`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_saran_dan_masukan`
 --
 ALTER TABLE `tbl_saran_dan_masukan`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tbl_surat_domisili`
 --
 ALTER TABLE `tbl_surat_domisili`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_surat_keramaian`
 --
 ALTER TABLE `tbl_surat_keramaian`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -705,7 +667,6 @@ ALTER TABLE `tbl_kartu_keluarga`
 -- Constraints for table `tbl_kepala_desa`
 --
 ALTER TABLE `tbl_kepala_desa`
-  ADD CONSTRAINT `tbl_kepala_desa_ibfk_1` FOREIGN KEY (`id_jabatan`) REFERENCES `tbl_jabatan` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `tbl_kepala_desa_ibfk_2` FOREIGN KEY (`id_pangkat_golongan`) REFERENCES `tbl_pangkat_golongan` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `tbl_kepala_desa_ibfk_3` FOREIGN KEY (`id_pendidikan`) REFERENCES `tbl_pendidikan` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `tbl_kepala_desa_ibfk_4` FOREIGN KEY (`id_jurusan_pendidikan`) REFERENCES `tbl_jurusan_pendidikan` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,

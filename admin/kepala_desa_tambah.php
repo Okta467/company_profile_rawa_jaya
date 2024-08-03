@@ -25,7 +25,6 @@
     $tmp_lahir           = htmlspecialchars($purifier->purify($_POST['xtmp_lahir']));
     $tgl_lahir           = $_POST['xtgl_lahir'];
     $tahun_ijazah        = $_POST['xtahun_ijazah'];
-    $id_jabatan          = $_POST['xid_jabatan'];
     $id_pangkat_golongan = $_POST['xid_pangkat_golongan'];
     $id_pendidikan       = $_POST['xid_pendidikan'];
     $id_jurusan          = $_POST['xid_jurusan'] ?? null;
@@ -61,7 +60,6 @@
         $query_kepala_desa = "INSERT INTO tbl_kepala_desa 
         (
             id_pengguna
-            , id_jabatan
             , id_pangkat_golongan
             , id_pendidikan
             , id_jurusan_pendidikan
@@ -73,7 +71,7 @@
             , tgl_lahir
             , tahun_ijazah
         ) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         if (!mysqli_stmt_prepare($stmt_kepala_desa, $query_kepala_desa)) {
             $_SESSION['msg'] = 'Statement Kepala Desa preparation failed: ' . mysqli_stmt_error($stmt_kepala_desa);
@@ -82,7 +80,7 @@
         }
         
         $id_pengguna = mysqli_insert_id($connection);
-        mysqli_stmt_bind_param($stmt_kepala_desa, 'iiiiissssssi', $id_pengguna, $id_jabatan, $id_pangkat_golongan, $id_pendidikan, $id_jurusan, $nip, $nama_kepala_desa, $jk, $alamat, $tmp_lahir, $tgl_lahir, $tahun_ijazah);
+        mysqli_stmt_bind_param($stmt_kepala_desa, 'iiiissssssi', $id_pengguna, $id_pangkat_golongan, $id_pendidikan, $id_jurusan, $nip, $nama_kepala_desa, $jk, $alamat, $tmp_lahir, $tgl_lahir, $tahun_ijazah);
         
         if (!mysqli_stmt_execute($stmt_kepala_desa)) {
             $_SESSION['msg'] = 'Statement Kepala Desa preparation failed: ' . mysqli_stmt_error($stmt_kepala_desa);

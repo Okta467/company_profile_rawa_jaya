@@ -16,14 +16,11 @@
     $query = 
         "SELECT
             a.id AS id_kepala_desa, a.nip, a.nama_kepala_desa, a.jk, a.alamat, a.tmp_lahir, a.tgl_lahir, a.tahun_ijazah,
-            b.id AS id_jabatan, b.nama_jabatan, 
             c.id AS id_pangkat_golongan, c.nama_pangkat_golongan, c.tipe AS tipe_pangkat_golongan,
             d.id AS id_pendidikan, d.nama_pendidikan,
             e.id AS id_jurusan_pendidikan, e.nama_jurusan AS nama_jurusan_pendidikan,
             f.id AS id_pengguna, f.username, f.hak_akses
         FROM tbl_kepala_desa AS a
-        LEFT JOIN tbl_jabatan AS b
-            ON a.id_jabatan = b.id
         LEFT JOIN tbl_pangkat_golongan AS c
             ON a.id_pangkat_golongan = c.id
         LEFT JOIN tbl_pendidikan AS d

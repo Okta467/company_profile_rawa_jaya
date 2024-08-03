@@ -97,7 +97,7 @@ $user_logged_in = $_SESSION['nama_pegawai'] ?? $_SESSION['nama_guest'] ?? $_SESS
       </a>
       
       <?php
-      if (in_array($current_page, ['jabatan', 'pangkat_golongan', 'pendidikan', 'jurusan_pendidikan'])) {
+      if (in_array($current_page, ['pangkat_golongan', 'pendidikan', 'jurusan_pendidikan'])) {
         $active_nav_container_detail_kepala_desa = 'active';
         $show_nav_menu_detail_kepala_desa = 'show';
       }
@@ -110,9 +110,6 @@ $user_logged_in = $_SESSION['nama_pegawai'] ?? $_SESSION['nama_guest'] ?? $_SESS
       </a>
       <div class="collapse <?= $show_nav_menu_detail_kepala_desa ?? '' ?>" id="collapseDetailKepalaDesa" data-bs-parent="#accordionSidenav">
         <nav class="sidenav-menu-nested nav">
-          <a class="nav-link <?php if ($current_page === 'jabatan') echo 'active' ?>" href="jabatan.php?go=jabatan">
-            Jabatan
-          </a>
           <a class="nav-link <?php if ($current_page === 'pangkat_golongan') echo 'active' ?>" href="pangkat_golongan.php?go=pangkat_golongan">
             Pangkat / Golongan
           </a>

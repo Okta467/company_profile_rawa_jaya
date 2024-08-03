@@ -71,7 +71,6 @@ else :
                       <th>Pangkat/Golongan</th>
                       <th><div class="text-center">Status</div></th>
                       <th>Ijazah/Mapel/Tahun</th>
-                      <th>Jabatan</th>
                       <th>Ubah Profil <br>/ Detail</th>
                     </tr>
                   </thead>
@@ -82,14 +81,11 @@ else :
                     $query_kepala_desa = mysqli_query($connection, 
                       "SELECT
                         a.id AS id_kepala_desa, a.nip, a.nama_kepala_desa, a.jk, a.alamat, a.tmp_lahir, a.tgl_lahir, a.tahun_ijazah,
-                        b.id AS id_jabatan, b.nama_jabatan, 
                         c.id AS id_pangkat_golongan, c.nama_pangkat_golongan, c.tipe AS tipe_pangkat_golongan,
                         d.id AS id_pendidikan, d.nama_pendidikan,
                         e.id AS id_jurusan_pendidikan, e.nama_jurusan AS nama_jurusan_pendidikan,
                         f.id AS id_pengguna, f.username, f.hak_akses
                       FROM tbl_kepala_desa AS a
-                      LEFT JOIN tbl_jabatan AS b
-                        ON a.id_jabatan = b.id
                       LEFT JOIN tbl_pangkat_golongan AS c
                         ON a.id_pangkat_golongan = c.id
                       LEFT JOIN tbl_pendidikan AS d
@@ -121,11 +117,6 @@ else :
                         </td>
                         <td>
                           <?= "{$kepala_desa['nama_pendidikan']}/{$kepala_desa['nama_jurusan_pendidikan']}/{$kepala_desa['tahun_ijazah']}" ?>
-                        </td>
-                        <td>
-                          <div class="ellipsis toggle_tooltip" title="<?= $kepala_desa['nama_jabatan'] ?>">
-                            <?= $kepala_desa['nama_jabatan'] ?>
-                          </div>
                         </td>
                         <td>
                           <button class="btn btn-datatable btn-icon btn-transparent-dark me-2 toggle_modal_ubah" type="button"
@@ -289,20 +280,7 @@ else :
                 </div>
     
               </div>
-    
-    
-              <div class="mb-3">
-                <label class="small mb-1" for="xid_jabatan">Jabatan</label>
-                <select name="xid_jabatan" class="form-control select2" id="xid_jabatan" required>
-                  <option value="">-- Pilih --</option>
-                  <?php $query_jabatan = mysqli_query($connection, "SELECT * FROM tbl_jabatan") ?>
-                  <?php while ($jabatan = mysqli_fetch_assoc($query_jabatan)) : ?>
-    
-                    <option value="<?= $jabatan['id'] ?>"><?= $jabatan['nama_jabatan'] ?></option>
-    
-                  <?php endwhile ?>
-                </select>
-              </div>
+
     
               <div class="mb-3">
                 <label class="small mb-1" for="xid_pangkat_golongan">Pangkat/Golongan</label>
@@ -417,7 +395,6 @@ else :
               $('#ModalInputProfil #xalamat').val(data[0].alamat);
               $('#ModalInputProfil #xtmp_lahir').val(data[0].tmp_lahir);
               $('#ModalInputProfil #xtgl_lahir').val(data[0].tgl_lahir);
-              $('#ModalInputProfil .select2#xid_jabatan').val(data[0].id_jabatan).trigger('change');
               $('#ModalInputProfil #xtahun_ijazah').val(data[0].tahun_ijazah);
               $('#ModalInputProfil .select2#xid_pangkat_golongan').val(data[0].id_pangkat_golongan).trigger('change');
               $('#ModalInputProfil .select2#xid_pendidikan').val(data[0].id_pendidikan).trigger('change');

@@ -27,7 +27,6 @@
     $tmp_lahir           = htmlspecialchars($purifier->purify($_POST['xtmp_lahir']));
     $tgl_lahir           = $_POST['xtgl_lahir'];
     $tahun_ijazah        = $_POST['xtahun_ijazah'];
-    $id_jabatan          = $_POST['xid_jabatan'];
     $id_pangkat_golongan = $_POST['xid_pangkat_golongan'];
     $id_pendidikan       = $_POST['xid_pendidikan'];
     $id_jurusan          = $_POST['xid_jurusan'] ?? null;
@@ -43,8 +42,7 @@
         // Kepala Desa statement preparation and execution
         $stmt_kepala_desa  = mysqli_stmt_init($connection);
         $query_kepala_desa = "UPDATE tbl_kepala_desa SET
-            id_jabatan = ?
-            , id_pangkat_golongan = ?
+            id_pangkat_golongan = ?
             , id_pendidikan = ?
             , id_jurusan_pendidikan = ?
             , nip = ?
@@ -62,7 +60,7 @@
             return;
         }
         
-        mysqli_stmt_bind_param($stmt_kepala_desa, 'iiiiisssssii', $id_jabatan, $id_pangkat_golongan, $id_pendidikan, $id_jurusan, $nip, $nama_kepala_desa, $jk, $alamat, $tmp_lahir, $tgl_lahir, $tahun_ijazah, $id_kepala_desa);
+        mysqli_stmt_bind_param($stmt_kepala_desa, 'iiiisssssii', $id_pangkat_golongan, $id_pendidikan, $id_jurusan, $nip, $nama_kepala_desa, $jk, $alamat, $tmp_lahir, $tgl_lahir, $tahun_ijazah, $id_kepala_desa);
         
         if (!mysqli_stmt_execute($stmt_kepala_desa)) {
             $_SESSION['msg'] = 'Statement Kepala Desa preparation failed: ' . mysqli_stmt_error($stmt_kepala_desa);
